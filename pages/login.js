@@ -1,8 +1,12 @@
-import Layout from "../components/layout";
+import Head from "next/head";
 
 export default function login() {
   return (
-    <Layout title="Login">
+    <div>
+      <Head>
+        <title>Login</title>
+        <link rel="icon" type="image/x-icon" href="img/Logo.png" />
+      </Head>
       <main className="text-gray-600 body-font content-center">
         <div className="flex flex-wrap content-center items-center">
           {/* flex kiri Logo */}
@@ -66,6 +70,6 @@ export default function login() {
           </div>
         </div>
       </main>
-    </Layout>
+    </div>
   );
 }
