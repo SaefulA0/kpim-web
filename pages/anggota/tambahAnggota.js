@@ -4,7 +4,7 @@ import Layout from "../../components/layout";
 function tambahAnggota() {
   return (
     <Layout title="Anggota">
-      <main>
+      <main className="font-inter">
         <div className="w-auto h-auto mx-8 my-12">
           <h1 className="text-2xl font-bold text-[#303030] mb-16">
             Tambah Anggota
@@ -122,16 +122,14 @@ function tambahAnggota() {
                   </div>
                   {/* field Jabatan */}
                   <div className="my-2">
-                    <label className="block">
-                      <span className="block text-sm font-semibold text-[#667080]">
-                        Jabatan
-                      </span>
-                      <input
-                        type="text"
-                        name="Jabatan"
-                        className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-                      />
+                    <label className="block text-sm font-semibold text-[#667080]">
+                      Jabatan
                     </label>
+                    <input
+                      type="text"
+                      name="Jabatan"
+                      className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                    />
                   </div>
                   {/* field Keanggotaan */}
                   <div className="my-2">
@@ -139,11 +137,13 @@ function tambahAnggota() {
                       <span className="block text-sm font-semibold text-[#667080]">
                         Keanggotaan
                       </span>
-                      <input
-                        type="text"
+                      <select
                         name="Keanggotaan"
-                        className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-                      />
+                        className="w-full mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1"
+                      >
+                        <option value="Anggota">Anggota</option>
+                        <option value="Pengurus">Pengurus</option>
+                      </select>
                     </label>
                   </div>
                   {/* field Status */}
@@ -152,11 +152,13 @@ function tambahAnggota() {
                       <span className="block text-sm font-semibold text-[#667080]">
                         Status
                       </span>
-                      <input
-                        type="text"
-                        name="Status"
-                        className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-                      />
+                      <select
+                        name="Keanggotaan"
+                        className="w-full mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1"
+                      >
+                        <option value="Anggota">Aktif</option>
+                        <option value="Pengurus">Tidak Aktif</option>
+                      </select>
                     </label>
                   </div>
                   {/* field Tanggal Daftar Anggota */}

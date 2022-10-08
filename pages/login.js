@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Footer from "../components/footer";
 
 function login() {
   return (
@@ -7,7 +8,7 @@ function login() {
         <title>Login</title>
         <link rel="icon" type="image/x-icon" href="img/Logo.png" />
       </Head>
-      <main className="text-gray-600 body-font content-center">
+      <main className="text-gray-600 body-font font-inter content-center">
         <div className="flex flex-wrap content-center items-center">
           {/* flex kiri Logo */}
           <div className="w-1/2 md:w-1/2 mt-10 md:mt-0 mb-10 md:mb-0 mx-auto">
@@ -61,6 +62,7 @@ function login() {
             </div>
           </div>
         </div>
+        <Footer />
       </main>
     </div>
   );
