@@ -139,8 +139,12 @@ function tambahAnggota() {
                       </span>
                       <select
                         name="Keanggotaan"
+                        required
                         className="w-full mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1"
                       >
+                        <option defaultValue={null}>
+                          --Pilih Keanggotaan--
+                        </option>
                         <option value="Anggota">Anggota</option>
                         <option value="Pengurus">Pengurus</option>
                       </select>
@@ -154,8 +158,10 @@ function tambahAnggota() {
                       </span>
                       <select
                         name="Keanggotaan"
+                        placeholder="M"
                         className="w-full mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1"
                       >
+                        <option>--Pilih Status--</option>
                         <option value="Anggota">Aktif</option>
                         <option value="Pengurus">Tidak Aktif</option>
                       </select>
@@ -168,7 +174,7 @@ function tambahAnggota() {
                         Tanggal Daftar Anggota
                       </span>
                       <input
-                        type="text"
+                        type="date"
                         name="TanggalDaftarAnggota"
                         className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                       />
@@ -181,7 +187,7 @@ function tambahAnggota() {
                         Nominal Simpanan Pokok
                       </span>
                       <input
-                        type="text"
+                        type="number"
                         name="NominalSimpananPokok"
                         className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                       />
@@ -204,14 +210,14 @@ function tambahAnggota() {
                   <div className="flex justify-between my-8">
                     {/* button batal */}
                     <Link href="/anggota">
-                      <button className="px-7 md:px-20 py-2 rounded-lg bg-[#F56565] hover:bg-[#ca4040] text-white shadow-md">
+                      <button className="px-7 mr-2 md:px-16 lg:px-20 py-2 rounded-lg bg-[#F56565] hover:bg-[#ca4040] text-white shadow-md">
                         Batal
                       </button>
                     </Link>
                     {/* button simpan */}
                     <button
                       type="submit"
-                      className="px-5 md:px-20 py-2 rounded-lg bg-[#48BB78] hover:bg-[#3da066] text-white shadow-md"
+                      className="px-5 ml-2 md:px-16 lg:px-20 py-2 rounded-lg bg-[#48BB78] hover:bg-[#3da066] text-white shadow-md"
                     >
                       Simpan
                     </button>

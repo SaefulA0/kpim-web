@@ -1,10 +1,9 @@
 import Layout from "../../components/layout";
 import Profile from "../../components/profile";
 import Link from "next/link";
-import { Menu, Popover, Transition } from "@headlessui/react";
-import { Fragment } from "react";
+import { Menu, Popover } from "@headlessui/react";
 
-function anggota({ users }) {
+function test({ users }) {
   return (
     <Layout title="Anggota">
       <main className="font-inter">
@@ -13,9 +12,7 @@ function anggota({ users }) {
           <div className="flex flex-wrap justify-between">
             <div>
               {/* Header */}
-              <h1 className="text-2xl font-bold text-[#303030]">
-                Daftar Anggota
-              </h1>
+              <h1 className="text-2xl font-bold text-[#303030]">Test Page</h1>
               <div className="flex items-center my-8">
                 {/* jumlah record */}
                 <p>Semua</p>
@@ -30,48 +27,22 @@ function anggota({ users }) {
             </div>
             <div>
               {/* Profil component */}
-              <div className="flex justify-end items-center">
-                <Profile />
-              </div>
-              {/* search section */}
-              <div className="flex justify-end items-center mt-6">
-                <Popover className="relative mr-2">
+              <Profile />
+              {/* search field */}
+              <div className="flex items-center mt-5">
+                <Popover className="relative z-10 mr-1">
                   <Popover.Button className="w-8 h-8 flex outline-none bg-slate-50 shadow-inner rounded-full items-center justify-center hover:bg-slate-100">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 192 512"
-                      width="8"
-                      height="8"
-                      className="fill-gray-600 w-4 h-4"
-                    >
-                      <path d="M144 80c0 26.5-21.5 48-48 48s-48-21.5-48-48s21.5-48 48-48s48 21.5 48 48zM0 224c0-17.7 14.3-32 32-32H96c17.7 0 32 14.3 32 32V448h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H64V256H32c-17.7 0-32-14.3-32-32z" />
-                    </svg>
+                    <div>i</div>
                   </Popover.Button>
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-200"
-                    enterFrom="opacity-0 translate-y-1"
-                    enterTo="opacity-100 translate-y-0"
-                    leave="transition ease-in duration-150"
-                    leaveFrom="opacity-100 translate-y-0"
-                    leaveTo="opacity-0 translate-y-1"
-                  >
-                    <Popover.Panel className="absolute right-5 -top-6 z-10 transform px-4">
-                      <div className="w-96 p-4 bg-slate-50 rounded-xl shadow-lg">
-                        <p className="text-sm">
-                          Masukan username atau nama anggota untuk mencari
-                          anggota
-                        </p>
-                      </div>
-                    </Popover.Panel>
-                  </Transition>
+                  <Popover.Panel className="absolute z-20 w-fit">
+                    <div>Tahokah anda hello world merupakan anime</div>
+                  </Popover.Panel>
                 </Popover>
-                {/* search field */}
                 <form>
                   <label className="text-sm font-medium text-gray-900 sr-only">
                     Search
                   </label>
-                  <div className="relative w-56">
+                  <div className="relative">
                     <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                       <svg
                         aria-hidden="true"
@@ -169,88 +140,77 @@ function anggota({ users }) {
                             </svg>
                             Aksi
                           </Menu.Button>
-                          <Transition
-                            as={Fragment}
-                            enter="transition ease-out duration-200"
-                            enterFrom="opacity-0 translate-y-1"
-                            enterTo="opacity-100 translate-y-0"
-                            leave="transition ease-in duration-150"
-                            leaveFrom="opacity-100 translate-y-0"
-                            leaveTo="opacity-0 translate-y-1"
-                          >
-                            <Menu.Items className="absolute w-fit left-3 z-10 divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                              <Menu.Item>
-                                {({ active }) => (
-                                  <a
-                                    href={`/anggota/${user.id}`}
-                                    passHref
-                                    className={`${
-                                      active
-                                        ? "bg-[#68D391] bg-opacity-20 text-gray-800"
-                                        : "text-gray-800"
-                                    } group flex w-full items-center rounded-b-md px-2 py-2`}
+                          <Menu.Items className="absolute w-fit left-3 z-10 divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <Menu.Item>
+                              {({ active }) => (
+                                <a
+                                  href="/"
+                                  className={`${
+                                    active
+                                      ? "bg-[#68D391] bg-opacity-20 text-gray-800"
+                                      : "text-gray-800"
+                                  } group flex w-full items-center rounded-b-md px-2 py-2`}
+                                >
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 512 512"
+                                    width="18"
+                                    height="18"
+                                    className="fill-gray-800 mr-1"
                                   >
-                                    <svg
-                                      xmlns="http://www.w3.org/2000/svg"
-                                      viewBox="0 0 512 512"
-                                      width="18"
-                                      height="18"
-                                      className="fill-gray-800 mr-1"
-                                    >
-                                      <path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-144c-17.7 0-32-14.3-32-32s14.3-32 32-32s32 14.3 32 32s-14.3 32-32 32z" />
-                                    </svg>
-                                    Detail Anggota
-                                  </a>
-                                )}
-                              </Menu.Item>
-                              <Menu.Item>
-                                {({ active }) => (
-                                  <a
-                                    href="/"
-                                    className={`${
-                                      active
-                                        ? "bg-[#68D391] bg-opacity-20 text-gray-800"
-                                        : "text-gray-900"
-                                    } group flex items-center rounded-t-md px-2 py-2`}
+                                    <path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-144c-17.7 0-32-14.3-32-32s14.3-32 32-32s32 14.3 32 32s-14.3 32-32 32z" />
+                                  </svg>
+                                  Detail Anggota
+                                </a>
+                              )}
+                            </Menu.Item>
+                            <Menu.Item>
+                              {({ active }) => (
+                                <a
+                                  href="/"
+                                  className={`${
+                                    active
+                                      ? "bg-[#68D391] bg-opacity-20 text-gray-800"
+                                      : "text-gray-900"
+                                  } group flex items-center rounded-t-md px-2 py-2`}
+                                >
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 512 512"
+                                    width="18"
+                                    height="18"
+                                    className="fill-gray-800 mr-1"
                                   >
-                                    <svg
-                                      xmlns="http://www.w3.org/2000/svg"
-                                      viewBox="0 0 512 512"
-                                      width="18"
-                                      height="18"
-                                      className="fill-gray-800 mr-1"
-                                    >
-                                      <path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.8 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z" />
-                                    </svg>
-                                    Edit Anggota
-                                  </a>
-                                )}
-                              </Menu.Item>
-                              <Menu.Item>
-                                {({ active }) => (
-                                  <a
-                                    href="/"
-                                    className={`${
-                                      active
-                                        ? "bg-[#68D391] bg-opacity-20 text-gray-800"
-                                        : "text-gray-800"
-                                    } group flex w-full items-center rounded-b-md px-2 py-2`}
+                                    <path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.8 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z" />
+                                  </svg>
+                                  Edit Anggota
+                                </a>
+                              )}
+                            </Menu.Item>
+                            <Menu.Item>
+                              {({ active }) => (
+                                <a
+                                  href="/"
+                                  className={`${
+                                    active
+                                      ? "bg-[#68D391] bg-opacity-20 text-gray-800"
+                                      : "text-gray-800"
+                                  } group flex w-full items-center rounded-b-md px-2 py-2`}
+                                >
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 448 512"
+                                    width="18"
+                                    height="18"
+                                    className="fill-gray-800 mr-1"
                                   >
-                                    <svg
-                                      xmlns="http://www.w3.org/2000/svg"
-                                      viewBox="0 0 448 512"
-                                      width="18"
-                                      height="18"
-                                      className="fill-gray-800 mr-1"
-                                    >
-                                      <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
-                                    </svg>
-                                    Hapus Anggota
-                                  </a>
-                                )}
-                              </Menu.Item>
-                            </Menu.Items>
-                          </Transition>
+                                    <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
+                                  </svg>
+                                  Hapus Anggota
+                                </a>
+                              )}
+                            </Menu.Item>
+                          </Menu.Items>
                         </Menu>
                       </td>
                     </tr>
@@ -293,9 +253,9 @@ function anggota({ users }) {
     </Layout>
   );
 }
-export default anggota;
+export default test;
 
-anggota.getInitialProps = async (ctx) => {
+test.getInitialProps = async (ctx) => {
   const response = await fetch("http://kpim_backend.test/api/user");
   const data = await response.json();
 
