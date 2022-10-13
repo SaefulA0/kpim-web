@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Menu, Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
-function listAnggota({ users }) {
+function pinjaman({ pinjaman }) {
   return (
     <Layout title="Anggota">
       <main className="font-inter">
@@ -14,7 +14,7 @@ function listAnggota({ users }) {
             <div>
               {/* Header */}
               <h1 className="text-2xl font-bold text-[#303030]">
-                Daftar Anggota
+                Daftar Pinjaman
               </h1>
               <div className="flex items-center my-8">
                 {/* jumlah record */}
@@ -23,7 +23,7 @@ function listAnggota({ users }) {
                 {/* button tambah anggota */}
                 <Link href="/anggota/tambahAnggota">
                   <button className="px-4 py-1 ml-8 text-white shadow-md rounded-full bg-[#38A169]">
-                    Tambah Baru +
+                    TAMBAH PINJAMAN +
                   </button>
                 </Link>
               </div>
@@ -59,8 +59,8 @@ function listAnggota({ users }) {
                     <Popover.Panel className="absolute right-5 -top-6 z-10 transform px-4">
                       <div className="w-96 p-4 bg-slate-50 rounded-xl shadow-lg">
                         <p className="text-sm">
-                          Masukan username atau nama anggota untuk mencari
-                          anggota
+                          Masukan nama anggota atau tanggal peminjaman untuk
+                          mencari pinjaman
                         </p>
                       </div>
                     </Popover.Panel>
@@ -105,19 +105,22 @@ function listAnggota({ users }) {
                     Id
                   </th>
                   <th scope="col" className="py-3 px-6 border-b-2 text-center">
-                    Profil
-                  </th>
-                  <th scope="col" className="py-3 px-6 border-b-2">
-                    Username
-                  </th>
-                  <th scope="col" className="py-3 px-6 border-b-2">
                     Nama Anggota
                   </th>
                   <th scope="col" className="py-3 px-6 border-b-2">
-                    Jabatan
+                    Tgl Peminjaman
+                  </th>
+                  <th scope="col" className="py-3 px-6 border-b-2">
+                    Sisa Cicilan
+                  </th>
+                  <th scope="col" className="py-3 px-6 border-b-2">
+                    Jatuh Tempo
                   </th>
                   <th scope="col" className="py-3 px-6 border-b-2 text-center">
-                    Keanggotaan
+                    Nominal Cicilan
+                  </th>
+                  <th scope="col" className="py-3 px-6 border-b-2 text-center">
+                    Durasi Cicilan
                   </th>
                   <th scope="col" className="py-3 px-6 border-b-2 text-center">
                     Status
@@ -128,33 +131,24 @@ function listAnggota({ users }) {
                 </tr>
               </thead>
               <tbody>
-                {users.map((user, id) => {
+                {pinjaman.map((pinjaman) => {
                   return (
-                    <tr key={id} className="bg-white border-b">
+                    <tr key={pinjaman.id} className="bg-white border-b">
                       <th
                         scope="row"
                         className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap"
                       >
-                        {user.id}
+                        {pinjaman.id}
                       </th>
-                      <td className="py-1 px-6">
-                        <img
-                          src="../img/defaultUser.png"
-                          alt="Avatar"
-                          className="mx-auto h-10 w-10 rounded-full ring-2 ring-white"
-                        />
-                      </td>
-                      <td className="py-1 px-6">{user.username}</td>
-                      <td className="py-1 px-6">{user.nama_anggota}</td>
-                      <td className="py-1 px-6">{user.jabatan}</td>
-                      <td className="py-1 px-6 text-center">
-                        <p className="bg-[#00B5D8] text-white mx-auto px-4 py-1 rounded-full w-fit">
-                          {user.keanggotaan}
-                        </p>
-                      </td>
+                      <td className="py-1 px-6">nama</td>
+                      <td className="py-1 px-6">11/11/2011</td>
+                      <td className="py-1 px-6">rp</td>
+                      <td className="py-1 px-6">11/11/2011</td>
+                      <td className="py-1 px-6">rp</td>
+                      <td className="py-1 px-6">12</td>
                       <td className="py-4 px-6">
                         <p className="bg-[#4299E1] text-white mx-auto px-4 py-1 rounded-full w-fit">
-                          {user.status}
+                          1
                         </p>
                       </td>
                       <td className="py-4 px-6 mx-auto relative">
@@ -182,7 +176,7 @@ function listAnggota({ users }) {
                               <Menu.Item>
                                 {({ active }) => (
                                   <a
-                                    href={`/anggota/${user.id}`}
+                                    href="/"
                                     className={`${
                                       active
                                         ? "bg-[#68D391] bg-opacity-20 text-gray-800"
@@ -292,22 +286,11 @@ function listAnggota({ users }) {
     </Layout>
   );
 }
-export default listAnggota;
+export default pinjaman;
 
-// listAnggota.getInitialProps = async () => {
-//   const response = await fetch("http://kpim_backend.test/api/user");
-//   const data = await response.json();
-
-//   return { users: data.users };
-// };
-
-export async function getStaticProps() {
-  const response = await fetch("http://kpim_backend.test/api/user");
+pinjaman.getInitialProps = async (context) => {
+  const response = await fetch("http://kpim_backend.test/api/pinjaman");
   const data = await response.json();
 
-  return {
-    props: {
-      users: data.users,
-    },
-  };
-}
+  return { pinjaman: data.pinjaman };
+};

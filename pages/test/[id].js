@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Layout from "../../components/layout";
 
-function anggota({ users }) {
+function user({ user }) {
   return (
     <Layout title="Anggota">
       <main className="font-inter">
@@ -56,7 +56,7 @@ function anggota({ users }) {
                         Nama Anggota
                       </span>
                       <p className="text-[#667080] text-sm my-2 border-[#667080]">
-                        Hello
+                        {user.name}
                       </p>
                     </label>
                   </div>
@@ -215,16 +215,14 @@ function anggota({ users }) {
   );
 }
 
-export default anggota;
-
 export async function getStaticPaths() {
-  const response = await fetch("http://kpim_backend.test/api/user");
-  const data = await response.json();
+  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+  const data = await res.json();
 
-  const paths = data.map((users) => {
+  const paths = data.map((user) => {
     return {
       params: {
-        users: `${users.id}`,
+        id: `${user.id}`,
       },
     };
   });
@@ -234,26 +232,18 @@ export async function getStaticPaths() {
   };
 }
 
-// anggota.getInitialProps = async (ctx) => {
-//   const { params } = ctx;
-//   const response = await fetch(
-//     `http://kpim_backend.test/api/user/${params.id}`
-//   );
-//   const data = await response.json();
-
-//   return { users: data.users };
-// };
-
 export async function getStaticProps(context) {
   const { params } = context;
-  const response = await fetch(
-    `http://kpim_backend.test/api/user/${params.id}`
+  const res = await fetch(
+    `https://jsonplaceholder.typicode.com/users/${params.id}`
   );
-  const data = await response.json();
+  const data = await res.json();
 
   return {
     props: {
-      users: data.users,
+      user: data,
     },
   };
 }
+
+export default user;

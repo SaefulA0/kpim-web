@@ -5,7 +5,7 @@ import { Menu, Popover } from "@headlessui/react";
 
 function test({ users }) {
   return (
-    <Layout title="Anggota">
+    <Layout title="Test">
       <main className="font-inter">
         <div className="w-auto min-h-screen mx-8 mt-10 mb-14">
           {/* header */}
@@ -116,16 +116,16 @@ function test({ users }) {
                         />
                       </td>
                       <td className="py-1 px-6">{user.username}</td>
-                      <td className="py-1 px-6">{user.nama_anggota}</td>
-                      <td className="py-1 px-6">{user.jabatan}</td>
+                      <td className="py-1 px-6">{user.name}</td>
+                      <td className="py-1 px-6">{user.email}</td>
                       <td className="py-1 px-6 text-center">
                         <p className="bg-[#00B5D8] text-white mx-auto px-4 py-1 rounded-full w-fit">
-                          {user.keanggotaan}
+                          1
                         </p>
                       </td>
                       <td className="py-4 px-6">
                         <p className="bg-[#4299E1] text-white mx-auto px-4 py-1 rounded-full w-fit">
-                          {user.status}
+                          1
                         </p>
                       </td>
                       <td className="py-4 px-6 mx-auto relative">
@@ -144,7 +144,7 @@ function test({ users }) {
                             <Menu.Item>
                               {({ active }) => (
                                 <a
-                                  href="/"
+                                  href={`/test/${user.id}`}
                                   className={`${
                                     active
                                       ? "bg-[#68D391] bg-opacity-20 text-gray-800"
@@ -255,9 +255,13 @@ function test({ users }) {
 }
 export default test;
 
-test.getInitialProps = async (ctx) => {
-  const response = await fetch("http://kpim_backend.test/api/user");
+export async function getStaticProps() {
+  const response = await fetch("https://jsonplaceholder.typicode.com/users");
   const data = await response.json();
 
-  return { users: data.users };
-};
+  return {
+    props: {
+      users: data,
+    },
+  };
+}
