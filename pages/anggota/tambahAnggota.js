@@ -1,14 +1,28 @@
 import Link from "next/link";
 import Layout from "../../components/layout";
+import Profile from "../../components/profile";
 
 function tambahAnggota() {
   return (
     <Layout title="Anggota">
       <main className="font-inter">
-        <div className="w-auto h-auto mx-8 my-12">
-          <h1 className="text-2xl font-bold text-[#303030] mb-16">
-            Tambah Anggota
-          </h1>
+        <div className="w-auto min-h-screen mx-8 mt-10 mb-10">
+          {/* header */}
+          <div className="flex flex-wrap mb-10 justify-between">
+            <div>
+              {/* Header */}
+              <h1 className="text-2xl font-bold text-[#303030]">
+                Tambah Anggota
+              </h1>
+            </div>
+            <div>
+              {/* Profil component */}
+              <div className="flex justify-end items-center">
+                <Profile />
+              </div>
+            </div>
+          </div>
+          {/* main */}
           <div className="flex flex-wrap md:flex-nowrap">
             {/* flex kanan */}
             <div className="w-full container rounded-lg py-8 px-12 md:mr-16 bg-[#F7FAFC]">
