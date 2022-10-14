@@ -3,18 +3,16 @@ import Profile from "../../components/profile";
 import Link from "next/link";
 import { Menu, Popover } from "@headlessui/react";
 
-const anggota = ({ users }) => {
+function test({ users }) {
   return (
-    <Layout title="Anggota">
+    <Layout title="Test">
       <main className="font-inter">
         <div className="w-auto min-h-screen mx-8 mt-10 mb-14">
           {/* header */}
           <div className="flex flex-wrap justify-between">
             <div>
               {/* Header */}
-              <h1 className="text-2xl font-bold text-[#303030]">
-                Daftar Anggota
-              </h1>
+              <h1 className="text-2xl font-bold text-[#303030]">Test Page</h1>
               <div className="flex items-center my-8">
                 {/* jumlah record */}
                 <p>Semua</p>
@@ -118,16 +116,16 @@ const anggota = ({ users }) => {
                         />
                       </td>
                       <td className="py-1 px-6">{user.username}</td>
-                      <td className="py-1 px-6">{user.nik}</td>
-                      <td className="py-1 px-6">{user.jabatan}</td>
+                      <td className="py-1 px-6">{user.name}</td>
+                      <td className="py-1 px-6">{user.email}</td>
                       <td className="py-1 px-6 text-center">
                         <p className="bg-[#00B5D8] text-white mx-auto px-4 py-1 rounded-full w-fit">
-                          Anggota
+                          1
                         </p>
                       </td>
                       <td className="py-4 px-6">
                         <p className="bg-[#4299E1] text-white mx-auto px-4 py-1 rounded-full w-fit">
-                          Aktif
+                          1
                         </p>
                       </td>
                       <td className="py-4 px-6 mx-auto relative">
@@ -146,7 +144,7 @@ const anggota = ({ users }) => {
                             <Menu.Item>
                               {({ active }) => (
                                 <a
-                                  href="/"
+                                  href={`/test/${user.id}`}
                                   className={`${
                                     active
                                       ? "bg-[#68D391] bg-opacity-20 text-gray-800"
@@ -254,12 +252,13 @@ const anggota = ({ users }) => {
       </main>
     </Layout>
   );
-};
-export default anggota;
+}
+export default test;
 
 export async function getStaticProps() {
-  const response = await fetch("http://kpim_backend.test/api/user/users");
+  const response = await fetch("https://jsonplaceholder.typicode.com/users");
   const data = await response.json();
+
   return {
     props: {
       users: data,

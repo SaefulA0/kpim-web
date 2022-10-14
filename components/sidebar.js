@@ -5,7 +5,7 @@ function SideNavbar() {
   return (
     <>
       <Disclosure as="nav">
-        <Disclosure.Button className="absolute border top-4 left-4 inline-flex items-center peer justify-center rounded-md p-2 hover:bg-[#C6F6D5] hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white group">
+        <Disclosure.Button className="absolute top-4 left-4 inline-flex items-center peer justify-center rounded-md p-2 text-[#4A5568] hover:bg-[#C6F6D5] hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white group">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 448 512"
@@ -112,7 +112,7 @@ function SideNavbar() {
                 <h1 className="text-[#A0AEC0]">Transaksi</h1>
               </div>
               {/* Nav Pinjaman */}
-              <Link href="/">
+              <Link href="/pinjaman">
                 <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-[#C6F6D5] p-2 rounded-md group cursor-pointer hover:shadow-sm m-auto">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
