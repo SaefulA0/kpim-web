@@ -3,9 +3,9 @@ import Link from "next/link";
 
 function SideNavbar() {
   return (
-    <div>
+    <>
       <Disclosure as="nav">
-        <Disclosure.Button className="absolute border top-4 left-4 inline-flex items-center peer justify-center rounded-md p-2 hover:bg-[#C6F6D5] hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white group">
+        <Disclosure.Button className="absolute top-4 left-4 inline-flex items-center peer justify-center rounded-md p-2 text-[#4A5568] hover:bg-[#C6F6D5] hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white group">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 448 512"
@@ -15,12 +15,12 @@ function SideNavbar() {
             <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
           </svg>
         </Disclosure.Button>
-        <div className="p-6 w-1/2 border-r-2 border-[#F0F0F0] h-screen bg-white fixed md:static z-20 top-0 -left-96 lg:left-0 lg:w-60  peer-focus:left-0 peer:transition ease-out delay-150 duration-200">
+        <div className="p-6 w-1/2 border-[#F0F0F0] bg-white fixed md:static z-20 top-0 -left-96 lg:left-0 lg:w-60  peer-focus:left-0 peer:transition ease-out delay-150 duration-200">
           <div className="flex flex-col justify-start item-center">
             {/* Nav index */}
             <Link href="/">
               <div className="w-1/2 mx-auto cursor-pointer md:my-4">
-                <img src="img/Logo.png" alt="Logo" className="mx-auto" />
+                <img src="../img/Logo.png" alt="Logo" className="mx-auto" />
               </div>
             </Link>
             <div className="mt-4">
@@ -61,7 +61,7 @@ function SideNavbar() {
                 </div>
               </Link>
               {/* Nav Anggota */}
-              <Link href="/">
+              <Link href="/anggota">
                 <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-[#C6F6D5] p-2 rounded-md group cursor-pointer hover:shadow-sm m-auto">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -112,7 +112,7 @@ function SideNavbar() {
                 <h1 className="text-[#A0AEC0]">Transaksi</h1>
               </div>
               {/* Nav Pinjaman */}
-              <Link href="/">
+              <Link href="/pinjaman">
                 <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-[#C6F6D5] p-2 rounded-md group cursor-pointer hover:shadow-sm m-auto">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -161,7 +161,7 @@ function SideNavbar() {
           </div>
         </div>
       </Disclosure>
-    </div>
+    </>
   );
 }
 export default SideNavbar;

@@ -1,13 +1,14 @@
 import Head from "next/head";
+import Footer from "../components/footer";
 
-export default function login() {
+function login() {
   return (
     <div>
       <Head>
         <title>Login</title>
         <link rel="icon" type="image/x-icon" href="img/Logo.png" />
       </Head>
-      <main className="text-gray-600 body-font content-center">
+      <main className="text-gray-600 body-font font-inter content-center">
         <div className="flex flex-wrap content-center items-center">
           {/* flex kiri Logo */}
           <div className="w-1/2 md:w-1/2 mt-10 md:mt-0 mb-10 md:mb-0 mx-auto">
@@ -25,10 +26,7 @@ export default function login() {
               {/* form */}
               <form>
                 <div className="relative mb-2">
-                  <label
-                    for="username"
-                    className="leading-7 text-sm md:text-lg font-medium text-gray-600"
-                  >
+                  <label className="leading-7 text-sm md:text-lg font-medium text-gray-600">
                     Username
                   </label>
                   {/* field username */}
@@ -41,10 +39,7 @@ export default function login() {
                   />
                 </div>
                 <div className="relative mb-2">
-                  <label
-                    for="password"
-                    className="leading-7 text-sm md:text-lg font-medium text-gray-600"
-                  >
+                  <label className="leading-7 text-sm md:text-lg font-medium text-gray-600">
                     password
                   </label>
                   {/* field password */}
@@ -58,9 +53,7 @@ export default function login() {
                 </div>
                 <div className="mb-6">
                   <input type="checkbox" id="isaya" name="isaya" value="" />
-                  <label for="isaya" className="text-sm md:text-lg ml-1">
-                    Ingat Saya
-                  </label>
+                  <label className="text-sm md:text-lg ml-1">Ingat Saya</label>
                 </div>
                 <button className="w-full rounded-lg shadow-md text-white bg-[#48BB78] border-0 py-2 px-8 focus:outline-none hover:bg-[#38A169] text-sm md:text-lg transition-colors duration-150 ease-in-out">
                   Login
@@ -69,7 +62,9 @@ export default function login() {
             </div>
           </div>
         </div>
+        <Footer />
       </main>
     </div>
   );
 }
+export default login;
