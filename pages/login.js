@@ -1,9 +1,24 @@
 import Head from "next/head";
 import Footer from "../components/footer";
+import { signIn, useSession } from "next-auth/react";
+import { useState, useEffect } from "react";
+import ModalFail from "../components/modals/moFailLogin";
 
 function login() {
+  const [userInfo, setUserInfo] = useState({ username: "", password: "" });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    await signIn("login", {
+      username: userInfo.username,
+      password: userInfo.password,
+      redirect: false,
+    });
+  };
+
   return (
-    <div>
+    <main className="font-inter">
       <Head>
         <title>Login</title>
         <link rel="icon" type="image/x-icon" href="img/Logo.png" />
@@ -11,60 +26,83 @@ function login() {
       <main className="text-gray-600 body-font font-inter content-center">
         <div className="flex flex-wrap content-center items-center">
           {/* flex kiri Logo */}
-          <div className="w-1/2 md:w-1/2 mt-10 md:mt-0 mb-10 md:mb-0 mx-auto">
+          <div className="w-32 md:w-1/2 mt-10 md:mt-0 mb-10 md:mb-0 mx-auto">
             <img src="img/Logo.png" alt="Logo" className="mx-auto" />
           </div>
           {/* flex kanan Card login */}
           <div className="w-full md:w-1/2 pb-24 md:h-screen bg-slate-100 rounded-lg p-8 flex content-center">
-            <div className="w-full md:w-3/5 mx-auto md:pt-10 md:mt-16">
-              <h1 className="text-2xl md:text-3xl font-bold title-font text-gray-800 mb-2">
+            <div className="w-full md:w-3/5 mx-auto md:pt-10 md:mt-24">
+              <h1 className="text-2xl md:text-4xl text-[#1A202C] font-bold title-font mb-2">
                 Login
               </h1>
-              <p className="mb-5 text-sm md:text-lg text-gray-800">
+              <p className="mb-5 text-sm md:text-base text-[#1A202C]">
                 Selamat datang! Silakan masukan username dan password
               </p>
               {/* form */}
-              <form>
-                <div className="relative mb-2">
-                  <label className="leading-7 text-sm md:text-lg font-medium text-gray-600">
-                    Username
+              <form onSubmit={handleSubmit}>
+                {/* username */}
+                <div className="my-2">
+                  <label className="block">
+                    <span className="block text-sm font-semibold text-[#1A202C]">
+                      Username
+                    </span>
+                    {/* field username */}
+                    <input
+                      type="text"
+                      id="username"
+                      placeholder="Masukan username"
+                      name="username"
+                      value={userInfo.username}
+                      required
+                      onChange={({ target }) =>
+                        setUserInfo({ ...userInfo, username: target.value })
+                      }
+                      className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                    />
                   </label>
-                  {/* field username */}
-                  <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    placeholder="Masukan username kamu disini"
-                    className="w-full rounded-lg text-sm md:text-lg bg-white border border-gray-300 focus:border-[#48BB78] focus:ring-2 focus:ring-[#C6F6D5] outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                  />
                 </div>
-                <div className="relative mb-2">
-                  <label className="leading-7 text-sm md:text-lg font-medium text-gray-600">
-                    password
+                <div className="my-2">
+                  <label className="block">
+                    <span className="block text-sm font-semibold text-[#1A202C]">
+                      Password
+                    </span>
+                    {/* field password */}
+                    <input
+                      type="password"
+                      id="password"
+                      name="password"
+                      required
+                      placeholder="Masukan password"
+                      value={userInfo.password}
+                      onChange={({ target }) =>
+                        setUserInfo({ ...userInfo, password: target.value })
+                      }
+                      className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                    />
                   </label>
-                  {/* field password */}
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="Masukan passwoord disini"
-                    className="w-full rounded-lg text-sm md:text-lg  bg-white border border-gray-300 focus:border-[#48BB78] focus:ring-2 focus:ring-[#C6F6D5] outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                  />
                 </div>
-                <div className="mb-6">
+                {/* checkbox ingat saya */}
+                <div className="mb-8">
                   <input type="checkbox" id="isaya" name="isaya" value="" />
-                  <label className="text-sm md:text-lg ml-1">Ingat Saya</label>
+                  <label className="text-sm md:text-base text-[#1A202C] ml-1">
+                    Ingat saya
+                  </label>
                 </div>
-                <button className="w-full rounded-lg shadow-md text-white bg-[#48BB78] border-0 py-2 px-8 focus:outline-none hover:bg-[#38A169] text-sm md:text-lg transition-colors duration-150 ease-in-out">
+                <button
+                  type="submit"
+                  value="Login"
+                  className="w-full rounded-lg shadow-md text-white bg-[#48BB78] border-0 py-2 px-8 focus:outline-none hover:bg-[#38A169] text-sm md:text-lg transition-colors duration-150 ease-in-out"
+                >
                   Login
                 </button>
               </form>
             </div>
           </div>
+          <ModalFail />
         </div>
         <Footer />
       </main>
-    </div>
+    </main>
   );
 }
 export default login;

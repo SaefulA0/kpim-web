@@ -239,44 +239,5 @@ export async function getStaticProps(context) {
     },
   };
 }
+
 export default anggota;
-// export async function getStaticPaths() {
-//   const response = await fetch("http://kpim_backend.test/api/user");
-//   const data = await response.json();
-
-//   const paths = data.map((user) => {
-//     return {
-//       params: {
-//         id: `${user.id}`,
-//       },
-//     };
-//   });
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// }
-
-// export async function getStaticProps(context) {
-//   const { params } = context;
-//   const response = await fetch(
-//     `http://kpim_backend.test/api/user/${params.idAnggota}`
-//   );
-//   const data = await response.json();
-
-//   return {
-//     props: {
-//       user: data,
-//     },
-//   };
-// }
-
-// anggota.getInitialProps = async (context) => {
-//   const { params } = context;
-//   const response = await fetch(
-//     `http://kpim_backend.test/api/user/${params.idAnggota}`
-//   );
-//   const data = await response.json();
-
-//   return { users: data.users };
-// };
