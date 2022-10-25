@@ -40,7 +40,7 @@ export default NextAuth({
     },
     async signIn({ user }) {
       const anggota = user.user;
-      console.log(anggota);
+
       if (anggota.username) {
         return true;
       }

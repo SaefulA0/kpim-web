@@ -1,8 +1,17 @@
 import Head from "next/head";
 import SideNavbar from "./sidebar";
 import Footer from "./footer";
+import Router from "next/router";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
 
 export default function Layout(props) {
+  const { status } = useSession();
+
+  useEffect(() => {
+    if (status === "unauthenticated") Router.replace("/login");
+  }, [status]);
+
   return (
     <>
       <Head>

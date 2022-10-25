@@ -2,10 +2,11 @@ import Head from "next/head";
 import Footer from "../components/footer";
 import { signIn, useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
-import ModalFail from "../components/modals/moFailLogin";
+import Router from "next/router";
 
 function login() {
   const [userInfo, setUserInfo] = useState({ username: "", password: "" });
+  const { status } = useSession();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,6 +17,10 @@ function login() {
       redirect: false,
     });
   };
+
+  useEffect(() => {
+    if (status === "authenticated") Router.replace("/");
+  }, [status]);
 
   return (
     <main className="font-inter">
@@ -98,7 +103,6 @@ function login() {
               </form>
             </div>
           </div>
-          <ModalFail />
         </div>
         <Footer />
       </main>
