@@ -12,7 +12,7 @@ function tambahAnggota() {
             <div>
               {/* Header */}
               <h1 className="text-2xl font-bold text-[#303030]">
-                Tambah Anggota
+                Edit Anggota
               </h1>
             </div>
             <div>
@@ -151,6 +151,42 @@ function tambahAnggota() {
                       <option value="Lorem">Lorem</option>
                     </select>
                   </div>
+                  {/* select keanggotaan */}
+                  <div className="my-2">
+                    <label className="block">
+                      <span className="block text-sm font-semibold text-[#667080]">
+                        Keanggotaan
+                      </span>
+                    </label>
+                    <select
+                      id="Keanggotaan"
+                      className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                    >
+                      <option>--Pilih Keanggotaan--</option>
+                      <option value="Lorem">Lorem</option>
+                      <option value="Lorem">Lorem</option>
+                      <option value="Lorem">Lorem</option>
+                      <option value="Lorem">Lorem</option>
+                    </select>
+                  </div>
+                  {/* select status */}
+                  <div className="my-2">
+                    <label className="block">
+                      <span className="block text-sm font-semibold text-[#667080]">
+                        Status
+                      </span>
+                    </label>
+                    <select
+                      id="Status"
+                      className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                    >
+                      <option>--Pilih Status--</option>
+                      <option value="Lorem">Lorem</option>
+                      <option value="Lorem">Lorem</option>
+                      <option value="Lorem">Lorem</option>
+                      <option value="Lorem">Lorem</option>
+                    </select>
+                  </div>
                   {/* field Tanggal Daftar Anggota */}
                   <div className="my-2">
                     <label className="block">
@@ -203,7 +239,7 @@ function tambahAnggota() {
                       type="submit"
                       className="px-5 ml-2 md:px-16 lg:px-20 py-2 rounded-lg bg-[#48BB78] hover:bg-[#3da066] text-white shadow-md"
                     >
-                      Tambah
+                      Simpan
                     </button>
                   </div>
                 </div>

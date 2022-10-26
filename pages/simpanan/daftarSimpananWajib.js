@@ -1,12 +1,11 @@
 import Layout from "../../components/layout";
 import Profile from "../../components/profile";
-import Link from "next/link";
 import { Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
-function daftarPinjaman() {
+function daftarSimpananWajib() {
   return (
-    <Layout title="Daftar Pinjaman">
+    <Layout title="Daftar Simpanan Wajib">
       <main className="font-inter">
         <div className="w-auto min-h-screen mx-8 mt-10 mb-14">
           {/* header */}
@@ -14,18 +13,12 @@ function daftarPinjaman() {
             <div>
               {/* Header */}
               <h1 className="text-2xl font-bold text-[#303030]">
-                Daftar Pinjaman
+                Daftar Simpanan Wajib Nama Anggota
               </h1>
               <div className="flex items-center my-8">
                 {/* jumlah record */}
                 <p>Semua</p>
                 <span>()</span>
-                {/* button tambah anggota */}
-                <Link href="/pinjaman/tambahSimpanan">
-                  <button className="px-4 py-1 ml-8 text-white shadow-md rounded-full bg-[#38A169]">
-                    Tambah Pinjaman +
-                  </button>
-                </Link>
               </div>
             </div>
             <div>
@@ -104,11 +97,4 @@ function daftarPinjaman() {
     </Layout>
   );
 }
-export default daftarPinjaman;
-
-// daftarPinjaman.getInitialProps = async () => {
-//   const response = await fetch("http://kpim_backend.test/api/pinjaman");
-//   const data = await response.json();
-
-//   return { users: data.users };
-// };
+export default daftarSimpananWajib;
