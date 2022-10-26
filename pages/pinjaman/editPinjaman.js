@@ -4,9 +4,9 @@ import Profile from "../../components/profile";
 import CardBarang from "../../components/card/pinjaman/cardBarang";
 import CardTotalPinjaman from "../../components/card/pinjaman/cardTotalPinjaman";
 
-function tambahPinjaman() {
+function editPinjaman() {
   return (
-    <Layout title="Tambah Pinjaman">
+    <Layout title="Edit Pinjaman">
       <main className="font-inter">
         <div className="w-auto min-h-screen mx-8 mt-10 mb-10">
           {/* header */}
@@ -14,7 +14,7 @@ function tambahPinjaman() {
             <div>
               {/* Header */}
               <h1 className="text-2xl font-bold text-[#303030]">
-                Tambah Pinjaman
+                Edit Pinjaman
               </h1>
             </div>
             <div>
@@ -197,7 +197,7 @@ function tambahPinjaman() {
                       type="submit"
                       className="w-full py-2 rounded-lg bg-[#48BB78] hover:bg-[#3da066] text-white shadow-md"
                     >
-                      Tambah Data Pinjaman
+                      Simpan Data Pinjaman
                     </button>
                   </form>
                 </div>
@@ -210,4 +210,4 @@ function tambahPinjaman() {
   );
 }
 
-export default tambahPinjaman;
+export default editPinjaman;

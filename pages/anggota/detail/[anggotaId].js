@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Layout from "../../components/layout";
-import Profile from "../../components/profile";
+import Layout from "../../../components/layout";
+import Profile from "../../../components/profile";
 
 function anggota({ user }) {
   return (

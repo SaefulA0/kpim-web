@@ -4,9 +4,9 @@ import Link from "next/link";
 import { Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
-function daftarPinjaman() {
+function daftarPersediaanBarang() {
   return (
-    <Layout title="Daftar Pinjaman">
+    <Layout title="Daftar Persediaan Barang">
       <main className="font-inter">
         <div className="w-auto min-h-screen mx-8 mt-10 mb-14">
           {/* header */}
@@ -14,18 +14,12 @@ function daftarPinjaman() {
             <div>
               {/* Header */}
               <h1 className="text-2xl font-bold text-[#303030]">
-                Daftar Pinjaman
+                Daftar Persediaan Barang
               </h1>
               <div className="flex items-center my-8">
                 {/* jumlah record */}
                 <p>Semua</p>
                 <span>()</span>
-                {/* button tambah anggota */}
-                <Link href="/pinjaman/tambahSimpanan">
-                  <button className="px-4 py-1 ml-8 text-white shadow-md rounded-full bg-[#38A169]">
-                    Tambah Pinjaman +
-                  </button>
-                </Link>
               </div>
             </div>
             <div>
@@ -59,7 +53,8 @@ function daftarPinjaman() {
                     <Popover.Panel className="absolute right-5 -top-4 z-10 transform px-4">
                       <div className="w-96 p-4 bg-slate-50 rounded-xl shadow-lg">
                         <p className="text-sm">
-                          Masukan nama anggota untuk mencari anggota
+                          Masukan nama barang atau jenis barang untuk mencari
+                          barang
                         </p>
                       </div>
                     </Popover.Panel>
@@ -104,7 +99,7 @@ function daftarPinjaman() {
     </Layout>
   );
 }
-export default daftarPinjaman;
+export default daftarPersediaanBarang;
 
 // daftarPinjaman.getInitialProps = async () => {
 //   const response = await fetch("http://kpim_backend.test/api/pinjaman");

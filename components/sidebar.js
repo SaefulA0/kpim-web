@@ -19,8 +19,8 @@ function SideNavbar() {
           <div className="flex flex-col justify-start item-center">
             {/* Nav index */}
             <Link href="/">
-              <div className="w-1/2 mx-auto cursor-pointer md:my-4">
-                <img src="../img/Logo.png" alt="Logo" className="mx-auto" />
+              <div className="w-3/5 mx-auto cursor-pointer md:my-4">
+                <img src="../img/Logo.svg" alt="Logo" className="mx-auto" />
               </div>
             </Link>
             <div className="mt-4">
@@ -46,7 +46,7 @@ function SideNavbar() {
                 <h1 className="text-[#A0AEC0]">Master Data</h1>
               </div>
               {/* Nav simpanan */}
-              <Link href="/">
+              <Link href="/simpanan">
                 <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-[#C6F6D5] p-2 rounded-md group cursor-pointer hover:shadow-sm m-auto">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +76,7 @@ function SideNavbar() {
                 </div>
               </Link>
               {/* Nav Persediaan Barang */}
-              <Link href="/">
+              <Link href="/barang">
                 <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-[#C6F6D5] p-2 rounded-md group cursor-pointer hover:shadow-sm m-auto">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

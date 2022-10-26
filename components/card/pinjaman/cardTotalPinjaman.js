@@ -1,4 +1,4 @@
-function cardBarang() {
+function cardTotalPinjaman() {
   return (
     <>
       <div className="bg-white w-full shadow-lg rounded-lg">
@@ -18,4 +18,4 @@ function cardBarang() {
     </>
   );
 }
-export default cardBarang;
+export default cardTotalPinjaman;

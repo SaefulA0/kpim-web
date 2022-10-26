@@ -2,9 +2,9 @@ import Link from "next/link";
 import Layout from "../../components/layout";
 import Profile from "../../components/profile";
 
-function tambahSimpanan() {
+function tambahSimpananSukarela() {
   return (
-    <Layout title="Tambah Simpanan Wajib">
+    <Layout title="Tambah Simpanan Sukarela">
       <main className="font-inter">
         <div className="w-auto min-h-screen mx-8 mt-10 mb-10">
           {/* header */}
@@ -12,7 +12,7 @@ function tambahSimpanan() {
             <div>
               {/* Header */}
               <h1 className="text-2xl font-bold text-[#303030]">
-                Tambah Simpanan Wajib
+                Tambah Simpanan Sukarela
               </h1>
             </div>
             <div>
@@ -25,7 +25,7 @@ function tambahSimpanan() {
           {/* main */}
           <div className="flex flex-wrap md:flex-nowrap">
             {/* flex kiri */}
-            <div className="w-full container rounded-lg py-8 px-12 md:mr-16 bg-[#F7FAFC]">
+            <div className="w-full h-fit container rounded-lg py-8 px-12 md:mr-16 bg-[#F7FAFC]">
               {/* form untuk mengisi data anggota baru */}
               <form>
                 <div className="flex flex-col justify-center">
@@ -42,46 +42,15 @@ function tambahSimpanan() {
                       />
                     </label>
                   </div>
-                  {/* field durasi */}
+                  {/* field nominal simpanan */}
                   <div className="my-2">
                     <label className="block">
                       <span className="block text-sm font-semibold text-[#667080]">
-                        Ingin Bayar Berapa Bulan?
-                      </span>
-                    </label>
-                    <select
-                      id="durasi"
-                      class="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-                    >
-                      <option selected>--Pilih Durasi--</option>
-                      <option value="Lorem">Lorem</option>
-                      <option value="Lorem">Lorem</option>
-                      <option value="Lorem">Lorem</option>
-                      <option value="Lorem">Lorem</option>
-                    </select>
-                  </div>
-                  {/* field nominal perbulan */}
-                  <div className="my-2">
-                    <label className="block">
-                      <span className="block text-sm font-semibold text-[#667080]">
-                        Nominal Perbulan
+                        Nominal Simpanan
                       </span>
                       <input
-                        type="text"
-                        name="nominalPerbulan"
-                        className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-                      />
-                    </label>
-                  </div>
-                  {/* field nominal total */}
-                  <div className="my-2">
-                    <label className="block">
-                      <span className="block text-sm font-semibold text-[#667080]">
-                        Nominal Total
-                      </span>
-                      <input
-                        type="text"
-                        name="nominalPerbulan"
+                        type="number"
+                        name="nominalSimpanan"
                         className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                       />
                     </label>
@@ -93,7 +62,7 @@ function tambahSimpanan() {
                         Tanggal Bayar
                       </span>
                       <input
-                        type="text"
+                        type="date"
                         name="tanggalBayar"
                         className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                       />
@@ -125,14 +94,14 @@ function tambahSimpanan() {
                       type="submit"
                       className="px-5 ml-2 md:px-16 lg:px-20 py-2 rounded-lg bg-[#48BB78] hover:bg-[#3da066] text-white shadow-md"
                     >
-                      Simpan
+                      Tambah
                     </button>
                   </div>
                 </div>
               </form>
             </div>
             {/* flex kanan */}
-            <div className="w-full container flex rounded-lg py-8 px-12 justify-center items-center bg-[#F0FFF4]">
+            <div className="w-full min-h-screen container flex rounded-lg py-8 px-12 justify-center items-center bg-[#F0FFF4]">
               <img
                 src="../img/newLogoKI.png"
                 alt="Logo"
@@ -146,4 +115,4 @@ function tambahSimpanan() {
   );
 }
 
-export default tambahSimpanan;
+export default tambahSimpananSukarela;

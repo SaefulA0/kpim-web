@@ -2,9 +2,7 @@ import Layout from "../../components/layout";
 import Profile from "../../components/profile";
 import Link from "next/link";
 import { Menu, Popover, Transition } from "@headlessui/react";
-import { Fragment, useEffect } from "react";
-import Router from "next/router";
-import { useSession } from "next-auth/react";
+import { Fragment } from "react";
 
 function listAnggota({ users }) {
   // const { status } = useSession();
@@ -15,7 +13,7 @@ function listAnggota({ users }) {
 
   // if (status === "authenticated") {
   return (
-    <Layout title="Anggota">
+    <Layout title="Daftar Anggota">
       <main className="font-inter">
         <div className="w-auto min-h-screen mx-8 mt-10 mb-14">
           {/* header */}
@@ -206,7 +204,7 @@ function listAnggota({ users }) {
                               <Menu.Item>
                                 {({ active }) => (
                                   <a
-                                    href={`/anggota/${user.id}`}
+                                    href={`/anggota/detail/${user.username}`}
                                     className={`${
                                       active
                                         ? "bg-[#68D391] bg-opacity-20 text-gray-800"
@@ -229,7 +227,7 @@ function listAnggota({ users }) {
                               <Menu.Item>
                                 {({ active }) => (
                                   <a
-                                    href="/"
+                                    href="/anggota/editAnggota"
                                     className={`${
                                       active
                                         ? "bg-[#68D391] bg-opacity-20 text-gray-800"
