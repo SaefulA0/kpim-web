@@ -26,13 +26,17 @@ function login() {
     <main className="font-inter">
       <Head>
         <title>Login</title>
-        <link rel="icon" type="image/x-icon" href="img/Logo.png" />
+        <link rel="icon" type="image/x-icon" href="img/Logo.svg" />
       </Head>
       <main className="text-gray-600 body-font font-inter content-center">
         <div className="flex flex-wrap content-center items-center">
           {/* flex kiri Logo */}
           <div className="w-32 md:w-1/2 mt-10 md:mt-0 mb-10 md:mb-0 mx-auto">
-            <img src="img/Logo.png" alt="Logo" className="mx-auto" />
+            <img
+              src="img/Logo.svg"
+              alt="Logo"
+              className="mx-auto w-32 md:w-1/2"
+            />
           </div>
           {/* flex kanan Card login */}
           <div className="w-full md:w-1/2 pb-24 md:h-screen bg-slate-100 rounded-lg p-8 flex content-center">
