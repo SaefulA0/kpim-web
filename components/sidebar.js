@@ -142,7 +142,7 @@ function SideNavbar() {
                 </div>
               </Link>
               {/* Nav Penjualan Barang */}
-              <Link href="/">
+              <Link href="/penjualanBarang">
                 <div className="flex mb-1 justify-start items-center gap-4 pl-5 hover:bg-[#C6F6D5] p-2 rounded-md group cursor-pointer hover:shadow-sm m-auto">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
