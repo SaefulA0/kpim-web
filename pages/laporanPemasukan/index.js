@@ -4,9 +4,9 @@ import Link from "next/link";
 import { Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
-function daftarPinjaman() {
+function daftarLaporanPemasukan() {
   return (
-    <Layout title="Daftar Pinjaman">
+    <Layout title="Daftar laporan Pemasukan">
       <main className="font-inter">
         <div className="w-auto min-h-screen mx-8 mt-10 mb-14">
           {/* header */}
@@ -14,16 +14,13 @@ function daftarPinjaman() {
             <div>
               {/* Header */}
               <h1 className="text-2xl font-bold text-[#303030]">
-                Daftar Pinjaman
+                Daftar Laporan Pemasukan
               </h1>
               <div className="flex items-center my-8">
-                {/* jumlah record */}
-                <p>Semua</p>
-                <span>()</span>
-                {/* button tambah anggota */}
-                <Link href="/pinjaman/tambahPinjaman">
-                  <button className="px-4 py-1 ml-8 text-white shadow-md rounded-full bg-[#38A169]">
-                    Tambah Pinjaman +
+                {/* button tambah laporan pemasukan */}
+                <Link href="/laporanPemasukan/tambahLaporanPemasukan">
+                  <button className="px-4 py-1 text-white shadow-md rounded-full bg-[#38A169]">
+                    Buat Laporan +
                   </button>
                 </Link>
               </div>
@@ -59,7 +56,8 @@ function daftarPinjaman() {
                     <Popover.Panel className="absolute right-5 -top-4 z-10 transform px-4">
                       <div className="w-96 p-4 bg-slate-50 rounded-xl shadow-lg">
                         <p className="text-sm">
-                          Masukan nama anggota untuk mencari anggota
+                          Masukan nama bulan dan tahun untuk mencari laporan
+                          pemasukan
                         </p>
                       </div>
                     </Popover.Panel>
@@ -97,18 +95,20 @@ function daftarPinjaman() {
           </div>
           {/* tabel */}
           <div className="mt-10 container flex items-center justify-center bg-slate-200 w-full h-96">
-            tabel
+            <Link href="/pembelianBarang/detailPembelianBarang">
+              <button>tabel</button>
+            </Link>
+          </div>
+          <div className="flex mt-4 justify-end">
+            <Link href="/">
+              <button className="px-4 py-2 text-white shadow-md rounded-md bg-[#02A0FC]">
+                Cetak Laporan
+              </button>
+            </Link>
           </div>
         </div>
       </main>
     </Layout>
   );
 }
-export default daftarPinjaman;
-
-// daftarPinjaman.getInitialProps = async () => {
-//   const response = await fetch("http://kpim_backend.test/api/pinjaman");
-//   const data = await response.json();
-
-//   return { users: data.users };
-// };
+export default daftarLaporanPemasukan;
