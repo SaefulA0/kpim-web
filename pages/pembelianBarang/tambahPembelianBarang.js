@@ -203,9 +203,7 @@ function tambahPembelianBarang() {
                 />
               </div> */}
               <div className="relative h-full">
-                <p className="text-lg font-bold mb-5">
-                  Daftar Barang Yang Dipinjam
-                </p>
+                <p className="text-lg font-bold mb-5">Daftar Barang</p>
                 <div className="mb-5">
                   <CardPembelianBarang />
                 </div>
