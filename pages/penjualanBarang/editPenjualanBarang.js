@@ -1,10 +1,12 @@
 import Link from "next/link";
 import Layout from "../../components/layout";
 import Profile from "../../components/profile";
+import CardPenjualanBarang from "../../components/card/penjualanBarang/cardpenjualanBarang";
+import CardTotalPB from "../../components/card/penjualanBarang/cardTotalPB";
 
-function tambahAnggota() {
+function editPenjualanBarang() {
   return (
-    <Layout title="Anggota">
+    <Layout title="Edit Penjualan Barang">
       <main className="font-inter">
         <div className="w-auto min-h-screen mx-8 mt-10 mb-10">
           {/* header */}
@@ -12,7 +14,7 @@ function tambahAnggota() {
             <div>
               {/* Header */}
               <h1 className="text-2xl font-bold text-[#303030]">
-                Tambah Anggota
+                Edit Data Penjualan Barang
               </h1>
             </div>
             <div>
@@ -25,175 +27,150 @@ function tambahAnggota() {
           {/* main */}
           <div className="flex flex-wrap md:flex-nowrap">
             {/* flex kiri */}
-            <div className="w-full ">
-              {/* form untuk mengisi data anggota baru */}
+            <div className="w-full">
+              {/* form untuk mengedit data penjualan barang */}
+              {/* pengguna */}
+              <form>
+                <div className="flex mb-5 flex-col justify-center rounded-lg py-8 px-12 md:mr-16 bg-[#F7FAFC]">
+                  {/* field nama penanggung jawab */}
+                  <div className="my-2">
+                    <label className="block">
+                      <span className="block text-sm font-semibold text-[#667080]">
+                        Nama Penanggung Jawab
+                      </span>
+                      <input
+                        type="text"
+                        name="namaPenanggungJawab"
+                        disabled
+                        className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                      />
+                    </label>
+                  </div>
+                  {/* field Nama Pembeli */}
+                  <div className="my-2">
+                    <label className="block">
+                      <span className="block text-sm font-semibold text-[#667080]">
+                        Nama Pembeli
+                      </span>
+                      <input
+                        type="text"
+                        name="namaPembeli"
+                        className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                      />
+                    </label>
+                  </div>
+                </div>
+              </form>
+              {/* barang */}
               <form>
                 <div className="flex flex-col justify-center rounded-lg py-8 px-12 md:mr-16 bg-[#F7FAFC]">
-                  {/* field NIK */}
+                  {/* field nama barang */}
                   <div className="my-2">
                     <label className="block">
                       <span className="block text-sm font-semibold text-[#667080]">
-                        NIK
-                      </span>
-                      <input
-                        type="number"
-                        name="NIK"
-                        className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-                      />
-                    </label>
-                  </div>
-                  {/* field Username */}
-                  <div className="my-2">
-                    <label className="block">
-                      <span className="block text-sm font-semibold text-[#667080]">
-                        Username
+                        Nama Barang
                       </span>
                       <input
                         type="text"
-                        name="Username"
+                        name="namaBarang"
                         className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                       />
                     </label>
                   </div>
-                  {/* field password */}
+                  {/* field satuan */}
                   <div className="my-2">
                     <label className="block">
                       <span className="block text-sm font-semibold text-[#667080]">
-                        Password
-                      </span>
-                      <input
-                        type="password"
-                        name="password"
-                        className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-                      />
-                    </label>
-                  </div>
-                  {/* field Nama */}
-                  <div className="my-2">
-                    <label className="block">
-                      <span className="block text-sm font-semibold text-[#667080]">
-                        Nama
-                      </span>
-                      <input
-                        type="text"
-                        name="Nama"
-                        className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-                      />
-                    </label>
-                  </div>
-                  {/* field Tempat */}
-                  <div className="my-2">
-                    <label className="block">
-                      <span className="block text-sm font-semibold text-[#667080]">
-                        Tempat
-                      </span>
-                      <input
-                        type="text"
-                        name="Tempat"
-                        className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-                      />
-                    </label>
-                  </div>
-                  {/* field Tanggal Lahir */}
-                  <div className="my-2">
-                    <label className="block">
-                      <span className="block text-sm font-semibold text-[#667080]">
-                        Tanggal Lahir
-                      </span>
-                      <input
-                        type="date"
-                        name="Tanggal Lahir"
-                        className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-                      />
-                    </label>
-                  </div>
-                  {/* field Alamat */}
-                  <div className="my-2">
-                    <label className="block">
-                      <span className="block text-sm font-semibold text-[#667080]">
-                        Alamat
-                      </span>
-                      <input
-                        type="text"
-                        name="Alamat"
-                        className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-                      />
-                    </label>
-                  </div>
-                  {/* field Pekerjaan */}
-                  <div className="my-2">
-                    <label className="block">
-                      <span className="block text-sm font-semibold text-[#667080]">
-                        Pekerjaan
-                      </span>
-                      <input
-                        type="text"
-                        name="Pekerjaan"
-                        className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-                      />
-                    </label>
-                  </div>
-                  {/* select jabatan */}
-                  <div className="my-2">
-                    <label className="block">
-                      <span className="block text-sm font-semibold text-[#667080]">
-                        Jabatan
+                        Satuan
                       </span>
                     </label>
                     <select
-                      id="Keanggotaan"
+                      id="satuan"
                       className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                     >
-                      <option>--Pilih Jabatan--</option>
+                      <option>--Pilih Satuan--</option>
                       <option value="Lorem">Lorem</option>
                       <option value="Lorem">Lorem</option>
                       <option value="Lorem">Lorem</option>
                       <option value="Lorem">Lorem</option>
                     </select>
                   </div>
-                  {/* field Tanggal Daftar Anggota */}
+                  {/* field berat */}
                   <div className="my-2">
                     <label className="block">
                       <span className="block text-sm font-semibold text-[#667080]">
-                        Tanggal Daftar Anggota
+                        Berat
                       </span>
-                      <input
-                        type="date"
-                        name="TanggalDaftarAnggota"
-                        className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-                      />
                     </label>
+                    <select
+                      id="berat"
+                      className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                    >
+                      <option>--Pilih Berat--</option>
+                      <option value="Lorem">Lorem</option>
+                      <option value="Lorem">Lorem</option>
+                      <option value="Lorem">Lorem</option>
+                      <option value="Lorem">Lorem</option>
+                    </select>
                   </div>
-                  {/* field Nominal Simpanan Pokok */}
+                  {/* field jumlah */}
                   <div className="my-2">
                     <label className="block">
                       <span className="block text-sm font-semibold text-[#667080]">
-                        Nominal Simpanan Pokok
+                        Jumlah
                       </span>
                       <input
                         type="number"
-                        name="NominalSimpananPokok"
+                        name="jumlah"
                         className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                       />
                     </label>
                   </div>
-                  {/* field Keterangan Simpanan Pokok */}
+                  {/* field Tanggal Penjualan */}
                   <div className="my-2">
                     <label className="block">
                       <span className="block text-sm font-semibold text-[#667080]">
-                        Keterangan Simpanan Pokok
+                        Tanggal Penjualan
                       </span>
                       <input
-                        type="text"
-                        name="KeteranganSimpananPokok"
+                        type="number"
+                        name="tanggalPenjualan"
                         className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                       />
                     </label>
                   </div>
-                  {/* section button */}
+                  {/* field harga jual */}
+                  <div className="my-2">
+                    <label className="block">
+                      <span className="block text-sm font-semibold text-[#667080]">
+                        Harga Jual
+                      </span>
+                      <input
+                        type="number"
+                        name="hargaJual"
+                        disabled
+                        className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                      />
+                    </label>
+                  </div>
+                  {/* field subtotal */}
+                  <div className="my-2">
+                    <label className="block">
+                      <span className="block text-sm font-semibold text-[#667080]">
+                        Subtotal
+                      </span>
+                      <input
+                        disabled
+                        type="number"
+                        name="subtotal"
+                        className="mt-1 px-3 py-2 border shadow-sm border-slate-300 block w-full rounded-md sm:text-sm focus:ring-1"
+                      />
+                    </label>
+                  </div>
+                  {/* section button tambah keranjang */}
                   <div className="flex justify-between my-8">
                     {/* button batal */}
-                    <Link href="/anggota">
+                    <Link href="/pinjaman">
                       <button className="px-7 mr-2 md:px-16 lg:px-20 py-2 rounded-lg bg-[#F56565] hover:bg-[#ca4040] text-white shadow-md">
                         Batal
                       </button>
@@ -210,12 +187,33 @@ function tambahAnggota() {
               </form>
             </div>
             {/* flex kanan */}
-            <div className="w-3/4 container flex rounded-lg py-8 px-12 justify-center items-center bg-[#F0FFF4]">
-              <img
-                src="../img/newLogoKI.png"
-                alt="Logo"
-                className="aspect-square"
-              />
+            <div className="relative w-3/4 container rounded-lg py-8 px-12 bg-[#F0FFF4]">
+              {/* <div className="absolute flex left-24 h-full items-center">
+                <img
+                  src="../img/newLogoKI.png"
+                  alt="Logo"
+                  className="w-96 aspect-square"
+                />
+              </div> */}
+              <div className="relative h-full">
+                <p className="text-lg font-bold mb-5">Daftar Barang</p>
+                <div className="mb-5">
+                  <CardPenjualanBarang />
+                </div>
+                <div className="absolute bottom-0 w-full">
+                  <div className="my-8">
+                    <CardTotalPB />
+                  </div>
+                  <form>
+                    <button
+                      type="submit"
+                      className="w-full py-2 rounded-lg bg-[#48BB78] hover:bg-[#3da066] text-white shadow-md"
+                    >
+                      Simpan Data Penjualan Barang
+                    </button>
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -224,4 +222,4 @@ function tambahAnggota() {
   );
 }
 
-export default tambahAnggota;
+export default editPenjualanBarang;

@@ -4,26 +4,42 @@ import Link from "next/link";
 import { Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
-function daftarPinjaman() {
+function daftarCicilan() {
   return (
-    <Layout title="Daftar Pinjaman">
+    <Layout title="Pinjaman">
       <main className="font-inter">
         <div className="w-auto min-h-screen mx-8 mt-10 mb-14">
           {/* header */}
           <div className="flex flex-wrap justify-between">
             <div>
               {/* Header */}
-              <h1 className="text-2xl font-bold text-[#303030]">
-                Daftar Pinjaman
-              </h1>
+              <div className="flex items-center">
+                <h1 className="text-2xl font-bold mr-1.5 text-[#303030]">
+                  Daftar Cicilan NamaAnggota
+                </h1>
+                <div>
+                  <span className="bg-[#718096] flex items-center text-center text-sm text-white px-2 rounded-full w-fit">
+                    Belum Lunas
+                  </span>
+                </div>
+              </div>
               <div className="flex items-center my-8">
                 {/* jumlah record */}
                 <p>Semua</p>
                 <span>()</span>
                 {/* button tambah anggota */}
                 <Link href="/pinjaman/tambahPinjaman">
-                  <button className="px-4 py-1 ml-8 text-white shadow-md rounded-full bg-[#38A169]">
-                    Tambah Pinjaman +
+                  <button className="flex items-center px-4 py-1 ml-8 text-white shadow-md rounded-full bg-[#38A169]">
+                    Bayar Cicilan
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 640 512"
+                      width="20"
+                      height="20"
+                      className="fill-white ml-1.5"
+                    >
+                      <path d="M96 96V320c0 35.3 28.7 64 64 64H576c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H160c-35.3 0-64 28.7-64 64zm64 160c35.3 0 64 28.7 64 64H160V256zM224 96c0 35.3-28.7 64-64 64V96h64zM576 256v64H512c0-35.3 28.7-64 64-64zM512 96h64v64c-35.3 0-64-28.7-64-64zM448 208c0 44.2-35.8 80-80 80s-80-35.8-80-80s35.8-80 80-80s80 35.8 80 80zM48 120c0-13.3-10.7-24-24-24S0 106.7 0 120V360c0 66.3 53.7 120 120 120H520c13.3 0 24-10.7 24-24s-10.7-24-24-24H120c-39.8 0-72-32.2-72-72V120z" />
+                    </svg>
                   </button>
                 </Link>
               </div>
@@ -59,7 +75,7 @@ function daftarPinjaman() {
                     <Popover.Panel className="absolute right-5 -top-4 z-10 transform px-4">
                       <div className="w-96 p-4 bg-slate-50 rounded-xl shadow-lg">
                         <p className="text-sm">
-                          Masukan nama anggota untuk mencari anggota
+                          Masukan tanggal peminjaman untuk mencari cicilan
                         </p>
                       </div>
                     </Popover.Panel>
@@ -104,7 +120,7 @@ function daftarPinjaman() {
     </Layout>
   );
 }
-export default daftarPinjaman;
+export default daftarCicilan;
 
 // daftarPinjaman.getInitialProps = async () => {
 //   const response = await fetch("http://kpim_backend.test/api/pinjaman");
