@@ -5,7 +5,11 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        heroBG: "url(../public/img/heroBG.png)",
+      },
+    },
     fontFamily: {
       inter: ["Inter"],
     },
