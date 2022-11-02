@@ -39,6 +39,13 @@ export const TableTest = () => {
 
   const { pageIndex, pageSize } = state;
 
+  TableTest.getInitialProps = async () => {
+    const response = await fetch("http://kpim_backend.test/api/user");
+    const data = await response.json();
+
+    return { users: data.users };
+  };
+
   return (
     <>
       <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
@@ -180,19 +187,6 @@ export const TableTest = () => {
       </div>
       {/* pagination */}
       <div className="flex justify-end items-center">
-        {/* <div className="mr-2">
-          <span>Menampilkan</span>
-          <select
-          value={pageSize}
-          onChange={(e) => setPageSize(Number(e.target.value))}
-          >
-          {[10, 25, 50].map((pageSize) => (
-              <option key={pageSize} value={pageSize}>
-              {pageSize}
-              </option>
-              ))}
-              </select>
-            </div> */}
         <p className="text-sm">
           Halaman
           <span className="font-semibold px-1">{pageIndex + 1}</span>
