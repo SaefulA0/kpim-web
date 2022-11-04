@@ -5,7 +5,6 @@ import { COLUMNS } from "./columns";
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { GlobalFilter } from "../../GlobalFilter";
-import getData from "./getData";
 
 export const TableTest = (context) => {
   const columns = COLUMNS;
