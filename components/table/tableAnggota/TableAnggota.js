@@ -1,16 +1,12 @@
-import React, { useMemo } from "react";
+import { Menu, Popover, Transition } from "@headlessui/react";
+import { Fragment, useMemo, useState } from "react";
 import { useTable, useGlobalFilter, usePagination } from "react-table";
-import MOCK_DATA from "./MOCK_DATA.json";
 import { COLUMNS } from "./columns";
-import { Menu, Transition } from "@headlessui/react";
-import { Fragment } from "react";
 import { GlobalFilter } from "../../GlobalFilter";
-import getData from "./getData";
 
-export const TableTest = (context) => {
+function TableAnggota({ users }) {
   const columns = COLUMNS;
-  const data = MOCK_DATA;
-  // const data = users;
+  const data = users;
 
   const {
     getTableProps,
@@ -31,7 +27,7 @@ export const TableTest = (context) => {
   } = useTable(
     {
       columns,
-      data,
+      mydata: data,
     },
     useGlobalFilter,
     usePagination
@@ -236,4 +232,25 @@ export const TableTest = (context) => {
       </div>
     </>
   );
-};
+}
+export default TableAnggota;
+
+export async function getServerSideProps(context) {
+  const response = await fetch("http://kpim_backend.test/api/user");
+  const data = await response.json();
+
+  if (!data) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      users: data.users,
+    },
+  };
+}
