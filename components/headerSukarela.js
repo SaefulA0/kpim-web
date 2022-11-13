@@ -18,7 +18,7 @@ export default function HeaderSukarela() {
             </h1>
             <Link href="/">
               <button className="px-4 py-1 my-8 text-white shadow-md rounded-full bg-[#38A169]">
-                Bayar Simpanan Wajib
+                Bayar Simpanan Sukarela
               </button>
             </Link>
           </div>

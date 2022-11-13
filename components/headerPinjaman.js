@@ -1,4 +1,4 @@
-import Profile from "./profile";
+import Profile from "./profile2";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 
@@ -18,13 +18,13 @@ export default function HeaderPinjaman() {
             </h1>
             <Link href="/">
               <button className="px-4 py-1 my-8 text-white shadow-md rounded-full bg-[#38A169]">
-                Bayar Simpanan Wajib
+                Bayar Pinjaman
               </button>
             </Link>
           </div>
           <div>
             {/* Profil component */}
-            <div className="flex justify-end items-center">
+            <div className="hidden md:flex justify-end items-center">
               <Profile />
             </div>
           </div>

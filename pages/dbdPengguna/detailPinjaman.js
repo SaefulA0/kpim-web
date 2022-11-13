@@ -1,7 +1,7 @@
 import Layout from "../../components/layout";
 import Profile from "../../components/profile";
-import CardBarang from "../../components/card/pinjaman/cardBarang";
-import CardTotalPinjaman from "../../components/card/pinjaman/cardTotalPinjaman";
+import CardBarang from "../../components/card/cardBarang";
+import CardTotalPinjaman from "../../components/card/cardTotalPinjaman";
 
 export default function detailPinjaman() {
   return (
@@ -13,7 +13,7 @@ export default function detailPinjaman() {
             <div>
               {/* Header */}
               <h1 className="text-2xl font-bold text-[#303030]">
-                Detail Anggota
+                Detail Pinjaman
               </h1>
             </div>
             <div>
@@ -26,7 +26,7 @@ export default function detailPinjaman() {
           {/* main */}
           <div className="flex flex-wrap md:flex-nowrap">
             {/* flex kanan */}
-            <div className="w-full container rounded-lg py-8 px-12 md:mr-16 bg-[#F7FAFC]">
+            <div className="w-full h-fit container rounded-lg mb-8 md:mb-0 py-8 px-12 md:mr-16 bg-[#F7FAFC]">
               {/* form untuk mengisi data anggota baru */}
               <form>
                 <div className="flex flex-col justify-center">
@@ -100,15 +100,15 @@ export default function detailPinjaman() {
               </form>
             </div>
             {/* flex kiri */}
-            <div className="relative h-auto w-3/4 container rounded-lg py-8 px-12 bg-[#F0FFF4]">
-              <div className="relative min-h-screen">
+            <div className=" h-auto w-full md:w-3/4 container rounded-lg py-8 px-12 bg-[#F0FFF4]">
+              <div className="md:relative h-fit md:min-h-screen">
                 <p className="text-lg font-bold mb-5">
                   Daftar Barang Yang Dipinjam
                 </p>
-                <div className="mb-5">
+                <div className="mb-12 md:pb-40">
                   <CardBarang />
                 </div>
-                <div className="absolute bottom-0 w-full">
+                <div className="md:absolute md:bottom-0 w-full">
                   <CardTotalPinjaman />
                 </div>
               </div>
