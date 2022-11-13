@@ -16,11 +16,12 @@ export default function landingPage() {
       <section className="bg-heroBG bg-no-repeat bg-center bg-cover">
         <div className="container mx-auto px-5 py-24 flex md:flex-row flex-col w-full h-screen justify-around items-center">
           <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 mt-36 md:mt-0 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-            <h1 className="w-3/4 sm:text-4xl text-3xl mb-4 font-bold text-gray-900 md:text-slate-100">
+            <h1 className="w-4/5 md:text-4xl text-3xl mb-4 font-bold text-gray-900 md:text-slate-100">
               Selamat Datang di Koperasi Pekerja Indonesia Maju
             </h1>
-            <p className="mb-8 leading-relaxed text-sm text-gray-800 md:text-slate-200">
-              Lorem Bapaknya Ipsum
+            <p className="w-3/4 mb-8 leading-relaxed text-sm text-gray-800 md:text-slate-200">
+              Menjadi Koperasi yang mampu membangun potensi ekonomi untuk
+              kesejahteraan masyarakat
             </p>
             <button className="text-white bg-[#48BB78] shadow-lg border-0 py-2 px-6 focus:outline-none hover:bg-[#276749] rounded text-base">
               Dashboard Koperasi
@@ -47,7 +48,7 @@ export default function landingPage() {
                   Anggota Aktif
                 </h2>
                 <p className="leading-relaxed text-xs md:text-sm">
-                  512 Anggota
+                  Lebih dari 83 anggota
                 </p>
               </div>
             </div>
@@ -89,18 +90,18 @@ export default function landingPage() {
           <div className="flex flex-wrap items-center justify-center">
             <div className="md:w-1/2 mr-0 mb-8 md:mr-32">
               <h2 className="pl-3 sm:text-4xl text-3xl mb-6 font-semibold text-gray-800 border-l-4 border-[#024547]">
-                Tentang
+                Tentang Kami
               </h2>
               <p className="text-sm md:text-base leading-relaxed">
-                Sejarah singkat gerakan koperasi bermula pada abad ke-20 yang
-                pada umumnya merupakan hasil dari usaha yang tidak spontan dan
-                tidak dilakukan oleh orang-orang yang sangat kaya. Koperasi
-                tumbuh dari kalangan rakyat, ketika penderitaan dalam lapangan
-                ekonomi dan sosial yang ditimbulkan oleh sistem kapitalisme
-                semakin memuncak. Beberapa orang yang penghidupannya sederhana
-                dengan kemampuan ekonomi terbatas, terdorong oleh penderitaan
-                dan beban ekonomi yang sama, secara spontan mempersatukan diri
-                untuk menolong dirinya sendiri dan manusia sesamanya.
+                Koperasi Pekerja Indonesia Maju merupakan koperasi yang
+                berlokasi di Jalan Pecinan Lama No.13, Bandung, Jawa Barat,
+                40111. KPIM berjenis koperasi konsumen, yaitu koperasi yang
+                menyelenggarakan kegiatan usaha jual beli barang dan jasa. KPIM
+                didirikan oleh 20 orang pada tahun 2019 dan hingga sekarang
+                telah beranggota sebanyak 83 orang dibawah kepemimpinan Jejen
+                Haendra. Proses bisnis yang saat ini berjalan di KPIM
+                diantaranya adalah jual beli barang dan jasa, penyedia pinjaman,
+                serta penyelenggara simpanan.
               </p>
             </div>
             <div className="w-fit">
@@ -127,39 +128,39 @@ export default function landingPage() {
                   className="w-12 mb-4"
                 />
                 <h2 className="title-font mb-1.5 font-bold text-sm md:text-base text-gray-900">
-                  Bantuan Keuangan
+                  Memperkuat ekonomi
                 </h2>
                 <p className="leading-relaxed text-xs md:text-sm">
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod tempor
+                  Memperkuat ekonomi rakyat sebagai dasar kekuatan dan ketahanan
+                  perekonomian nasional
                 </p>
               </div>
               <div className="w-40 m-5 md:w-64">
                 <img
-                  src="img/LandingPage/aim.svg"
+                  src="img/LandingPage/family.png"
                   alt="Logo"
                   className="w-12 mb-4"
                 />
                 <h2 className="title-font mb-1.5 font-bold text-sm md:text-base text-gray-900">
-                  Membantu Mencapai Tujuan
+                  Kualitas hidup masyarakat
                 </h2>
                 <p className="leading-relaxed text-xs md:text-sm">
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod tempor
+                  Berperan serta secara aktif dalam upaya meningkatkan kualitas
+                  kehidupan masyarakat
                 </p>
               </div>
               <div className="w-40 md:w-64 m-5">
                 <img
-                  src="img/LandingPage/warehouse.svg"
+                  src="img/LandingPage/teamwork.png"
                   alt="Logo"
                   className="w-12 mb-4"
                 />
                 <h2 className="title-font mb-1.5 font-bold text-sm md:text-base text-gray-900">
-                  Bantuan Sembako
+                  Lorem Ipsum
                 </h2>
                 <p className="leading-relaxed text-xs md:text-sm">
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod tempor
+                  Membangun dan mengembangkan potensi dan kemampuan ekonomi
+                  anggota
                 </p>
               </div>
               <div className="w-40 md:w-64 m-5">
@@ -169,25 +170,22 @@ export default function landingPage() {
                   className="w-12 mb-4"
                 />
                 <h2 className="title-font mb-1.5 font-bold text-sm md:text-base text-gray-900">
-                  Membantu Ekonomi
+                  Perekonomian nasional
                 </h2>
                 <p className="leading-relaxed text-xs md:text-sm">
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod tempor
+                  Berusaha mewujudkan dan mengembangkan perekonomian nasional
                 </p>
               </div>
             </div>
             <div className="md:w-1/3 mb-8">
               <h2 className="pl-3 sm:text-4xl text-3xl mb-6 font-semibold text-gray-800 border-l-4 border-[#024547]">
-                Jasa
+                Tujuan Kami
               </h2>
               <p className="text-sm md:text-base leading-relaxed">
-                koperasi memiliki fungsi dan peranan antara lain yaitu
-                mengembangkan potensi dan kemampuan ekonomi anggota dan
-                masyarakat, berupaya mempertinggi kualitas kehidupan manusia,
-                memperkokoh perekonomian rakyat, mengembangkan perekonomian
-                nasional, serta mengembangkan kreativitas dan jiwa berorganisasi
-                bagi pelajar bangsa.
+                Memajukan kesejahteraan anggota khususnya dan masyarakat, serta
+                ikut membangun tatanan perekonomian nasional dalam rangka
+                mewujudkan masyarakat yang maju, adil, makmur berdasarkan
+                Pancasila dan UUD 1945.
               </p>
             </div>
           </div>
@@ -306,7 +304,7 @@ export default function landingPage() {
             </p>
           </div>
           <div className="flex flex-wrap justify-center w-full">
-            <div className="w-48 md:w-1/5 h-fit bg-white m-2 shadow-sm rounded-md">
+            <div className="w-48 md:w-1/4 h-fit bg-white m-2 shadow-sm rounded-md">
               <img
                 src="img/LandingPage/media.png"
                 alt="media"
@@ -314,12 +312,12 @@ export default function landingPage() {
               />
               <div className="py-4 text-center">
                 <h3 className="title-font mb-1 font-bold text-sm md:text-base text-gray-900">
-                  username
+                  Rina Kartina
                 </h3>
-                <p className="leading-relaxed text-xs md:text-sm">jabatan</p>
+                <p className="leading-relaxed text-xs md:text-sm">Sekretaris</p>
               </div>
             </div>
-            <div className="w-48 md:w-1/5 h-fit bg-white m-2 shadow-sm rounded-md">
+            <div className="w-48 md:w-1/4 h-fit bg-white m-2 shadow-sm rounded-md">
               <img
                 src="img/LandingPage/media.png"
                 alt="media"
@@ -327,12 +325,12 @@ export default function landingPage() {
               />
               <div className="py-4 text-center">
                 <h3 className="title-font mb-1 font-bold text-sm md:text-base text-gray-900">
-                  username
+                  Jejen Haendra
                 </h3>
-                <p className="leading-relaxed text-xs md:text-sm">jabatan</p>
+                <p className="leading-relaxed text-xs md:text-sm">Ketua</p>
               </div>
             </div>
-            <div className="w-48 md:w-1/5 h-fit bg-white m-2 shadow-sm rounded-md">
+            <div className="w-48 md:w-1/4 h-fit bg-white m-2 shadow-sm rounded-md">
               <img
                 src="img/LandingPage/media.png"
                 alt="media"
@@ -340,12 +338,12 @@ export default function landingPage() {
               />
               <div className="py-4 text-center">
                 <h3 className="title-font mb-1 font-bold text-sm md:text-base text-gray-900">
-                  username
+                  Eko Susilo
                 </h3>
-                <p className="leading-relaxed text-xs md:text-sm">jabatan</p>
+                <p className="leading-relaxed text-xs md:text-sm">Bendahara</p>
               </div>
             </div>
-            <div className="w-48 md:w-1/5 h-fit bg-white m-2 shadow-sm rounded-md">
+            <div className="w-48 md:w-1/4 h-fit bg-white m-2 shadow-sm rounded-md">
               <img
                 src="img/LandingPage/media.png"
                 alt="media"
@@ -353,12 +351,12 @@ export default function landingPage() {
               />
               <div className="py-4 text-center">
                 <h3 className="title-font mb-1 font-bold text-sm md:text-base text-gray-900">
-                  username
+                  H. Ujang Sopandi
                 </h3>
-                <p className="leading-relaxed text-xs md:text-sm">jabatan</p>
+                <p className="leading-relaxed text-xs md:text-sm">Pengawas</p>
               </div>
             </div>
-            <div className="w-48 md:w-1/5 h-fit bg-white m-2 shadow-sm rounded-md">
+            <div className="w-48 md:w-1/4 h-fit bg-white m-2 shadow-sm rounded-md">
               <img
                 src="img/LandingPage/media.png"
                 alt="media"
@@ -366,48 +364,11 @@ export default function landingPage() {
               />
               <div className="py-4 text-center">
                 <h3 className="title-font mb-1 font-bold text-sm md:text-base text-gray-900">
-                  username
+                  Witarsa Mari
                 </h3>
-                <p className="leading-relaxed text-xs md:text-sm">jabatan</p>
-              </div>
-            </div>
-            <div className="w-48 md:w-1/5 h-fit bg-white m-2 shadow-sm rounded-md">
-              <img
-                src="img/LandingPage/media.png"
-                alt="media"
-                className="w-full rounded-t-md"
-              />
-              <div className="py-4 text-center">
-                <h3 className="title-font mb-1 font-bold text-sm md:text-base text-gray-900">
-                  username
-                </h3>
-                <p className="leading-relaxed text-xs md:text-sm">jabatan</p>
-              </div>
-            </div>
-            <div className="w-48 md:w-1/5 h-fit bg-white m-2 shadow-sm rounded-md">
-              <img
-                src="img/LandingPage/media.png"
-                alt="media"
-                className="w-full rounded-t-md"
-              />
-              <div className="py-4 text-center">
-                <h3 className="title-font mb-1 font-bold text-sm md:text-base text-gray-900">
-                  username
-                </h3>
-                <p className="leading-relaxed text-xs md:text-sm">jabatan</p>
-              </div>
-            </div>
-            <div className="w-48 md:w-1/5 h-fit bg-white m-2 shadow-sm rounded-md">
-              <img
-                src="img/LandingPage/media.png"
-                alt="media"
-                className="w-full rounded-t-md"
-              />
-              <div className="py-4 text-center">
-                <h3 className="title-font mb-1 font-bold text-sm md:text-base text-gray-900">
-                  username
-                </h3>
-                <p className="leading-relaxed text-xs md:text-sm">jabatan</p>
+                <p className="leading-relaxed text-xs md:text-sm">
+                  Anggota Pengawas
+                </p>
               </div>
             </div>
           </div>

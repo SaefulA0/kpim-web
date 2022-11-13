@@ -1,6 +1,7 @@
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import Link from "next/link";
 import { Fragment } from "react";
+import Profile2 from "./profile2";
 
 function SideNavbar() {
   return (
@@ -16,7 +17,7 @@ function SideNavbar() {
             <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
           </svg>
         </Disclosure.Button>
-        <div className="p-6 w-1/2 border-[#F0F0F0] bg-white fixed md:static z-20 top-0 -left-96 lg:left-0 lg:w-60  peer-focus:left-0 peer:transition ease-out delay-150 duration-200">
+        <div className="p-6 w-1/2 h-screen border-[#F0F0F0] bg-white fixed md:static z-20 top-0 -left-96 lg:left-0 lg:w-60  peer-focus:left-0 peer:transition ease-out delay-150 duration-200">
           <div className="flex flex-col justify-start item-center">
             {/* Nav index */}
             <Link href="/">
@@ -26,7 +27,7 @@ function SideNavbar() {
             </Link>
             <div className="mt-4">
               {/* Nav dashboard */}
-              <Link href="/">
+              <Link href="/dbdPengguna/">
                 <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-[#C6F6D5] p-2 rounded-md group cursor-pointer hover:shadow-sm m-auto">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +48,7 @@ function SideNavbar() {
                 <h1 className="text-[#A0AEC0]">Master Data</h1>
               </div>
               {/* Nav simpanan */}
-              <Link href="/simpanan">
+              <Link href="/dbdPengguna/simpananWajib">
                 <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-[#C6F6D5] p-2 rounded-md group cursor-pointer hover:shadow-sm m-auto">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -57,27 +58,27 @@ function SideNavbar() {
                     <path d="M88.7 223.8L0 375.8V96C0 60.7 28.7 32 64 32H181.5c17 0 33.3 6.7 45.3 18.7l26.5 26.5c12 12 28.3 18.7 45.3 18.7H416c35.3 0 64 28.7 64 64v32H144c-22.8 0-43.8 12.1-55.3 31.8zm27.6 16.1C122.1 230 132.6 224 144 224H544c11.5 0 22 6.1 27.7 16.1s5.7 22.2-.1 32.1l-112 192C453.9 474 443.4 480 432 480H32c-11.5 0-22-6.1-27.7-16.1s-5.7-22.2 .1-32.1l112-192z" />
                   </svg>
                   <span className="text-base text-[#4A5568] group-hover:text-[#38A169] font-medium ">
-                    Simpanan
+                    Simpanan <br /> Wajib
                   </span>
                 </div>
               </Link>
               {/* Nav Anggota */}
-              <Link href="/anggota">
+              <Link href="/dbdPengguna/simpananSukarela">
                 <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-[#C6F6D5] p-2 rounded-md group cursor-pointer hover:shadow-sm m-auto">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 640 512"
+                    viewBox="0 0 576 512"
                     className="w-5 h-5 fill-[#4A5568] group-hover:fill-[#38A169]"
                   >
-                    <path d="M352 128c0 70.7-57.3 128-128 128s-128-57.3-128-128S153.3 0 224 0s128 57.3 128 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM609.3 512H471.4c5.4-9.4 8.6-20.3 8.6-32v-8c0-60.7-27.1-115.2-69.8-151.8c2.4-.1 4.7-.2 7.1-.2h61.4C567.8 320 640 392.2 640 481.3c0 17-13.8 30.7-30.7 30.7zM432 256c-31 0-59-12.6-79.3-32.9C372.4 196.5 384 163.6 384 128c0-26.8-6.6-52.1-18.3-74.3C384.3 40.1 407.2 32 432 32c61.9 0 112 50.1 112 112s-50.1 112-112 112z" />
+                    <path d="M88.7 223.8L0 375.8V96C0 60.7 28.7 32 64 32H181.5c17 0 33.3 6.7 45.3 18.7l26.5 26.5c12 12 28.3 18.7 45.3 18.7H416c35.3 0 64 28.7 64 64v32H144c-22.8 0-43.8 12.1-55.3 31.8zm27.6 16.1C122.1 230 132.6 224 144 224H544c11.5 0 22 6.1 27.7 16.1s5.7 22.2-.1 32.1l-112 192C453.9 474 443.4 480 432 480H32c-11.5 0-22-6.1-27.7-16.1s-5.7-22.2 .1-32.1l112-192z" />
                   </svg>
                   <span className="text-base text-[#4A5568] group-hover:text-[#38A169] font-medium ">
-                    Anggota
+                    Simpanan <br /> Sukarela
                   </span>
                 </div>
               </Link>
               {/* Nav Persediaan Barang */}
-              <Link href="/barang">
+              {/* <Link href="/barang">
                 <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-[#C6F6D5] p-2 rounded-md group cursor-pointer hover:shadow-sm m-auto">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -90,9 +91,9 @@ function SideNavbar() {
                     Persediaan Barang
                   </span>
                 </div>
-              </Link>
+              </Link> */}
               {/* Nav Laporan */}
-              <Menu as="div" className="relative inline-block w-full">
+              {/* <Menu as="div" className="relative inline-block w-full">
                 <Menu.Button className="w-full">
                   <div className="flex justify-between mb-2 items-center gap-4 pl-5 hover:bg-[#C6F6D5] p-2 rounded-md group cursor-pointer hover:shadow-sm m-auto">
                     <div className="flex gap-4">
@@ -162,7 +163,7 @@ function SideNavbar() {
                     </Menu.Item>
                   </Menu.Items>
                 </Transition>
-              </Menu>
+              </Menu> */}
             </div>
             {/* Transaksi */}
             <div>
@@ -170,7 +171,7 @@ function SideNavbar() {
                 <h1 className="text-[#A0AEC0]">Transaksi</h1>
               </div>
               {/* Nav Pinjaman */}
-              <Link href="/pinjaman">
+              <Link href="/dbdPengguna/pinjaman">
                 <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-[#C6F6D5] p-2 rounded-md group cursor-pointer hover:shadow-sm m-auto">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -185,7 +186,7 @@ function SideNavbar() {
                 </div>
               </Link>
               {/* Nav Pembelian Barang */}
-              <Link href="/pembelianBarang">
+              {/* <Link href="/pembelianBarang">
                 <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-[#C6F6D5] p-2 rounded-md group cursor-pointer hover:shadow-sm m-auto">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -198,9 +199,9 @@ function SideNavbar() {
                     Pembelian Barang
                   </span>
                 </div>
-              </Link>
+              </Link> */}
               {/* Nav Penjualan Barang */}
-              <Link href="/penjualanBarang">
+              {/* <Link href="/penjualanBarang">
                 <div className="flex mb-1 justify-start items-center gap-4 pl-5 hover:bg-[#C6F6D5] p-2 rounded-md group cursor-pointer hover:shadow-sm m-auto">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -214,7 +215,10 @@ function SideNavbar() {
                     Barang
                   </span>
                 </div>
-              </Link>
+              </Link> */}
+            </div>
+            <div className="md:hidden absolute bottom-5">
+              <Profile2 />
             </div>
           </div>
         </div>
