@@ -132,7 +132,7 @@ function listAnggota({ users }) {
             </div>
           </div>
           {/* tabel */}
-          <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
+          {/* <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
           <div className="mt-10 container">
             <table
               {...getTableProps()}
@@ -274,17 +274,17 @@ function listAnggota({ users }) {
                 })}
               </tbody>
             </table>
-          </div>
+          </div> */}
           {/* pagination */}
-          <div className="flex justify-end items-center">
+          {/* <div className="flex justify-end items-center">
             <p className="text-sm">
               Halaman
               <span className="font-semibold px-1">{pageIndex + 1}</span>
               dari
               <span className="font-semibold px-1">{pageOptions.length}</span>
-            </p>
-            {/* gotoPage */}
-            <span className="text-sm">
+            </p> */}
+          {/* gotoPage */}
+          {/* <span className="text-sm">
               || Ke Halaman {""}
               <input
                 className="w-12 text-center rounded-lg border-2 border-gray-400 pl-3"
@@ -297,9 +297,9 @@ function listAnggota({ users }) {
                   gotoPage(pageNumber);
                 }}
               />
-            </span>
-            {/* Previous */}
-            <button
+            </span> */}
+          {/* Previous */}
+          {/* <button
               onClick={() => previousPage()}
               disabled={!canPreviousPage}
               className="p-2 mx-1 disabled:opacity-20 rounded-md ring-1 ring-slate-200 shadow-sm bg-slate-300 bg-opacity-70 hover:bg-opacity-100"
@@ -312,9 +312,9 @@ function listAnggota({ users }) {
               >
                 <path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 278.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
               </svg>
-            </button>
-            {/* Next  */}
-            <button
+            </button> */}
+          {/* Next  */}
+          {/* <button
               onClick={() => nextPage()}
               disabled={!canNextPage}
               className="p-2 mx-1 disabled:opacity-20 rounded-md ring-1 ring-slate-200 shadow-sm bg-slate-300 bg-opacity-70 hover:bg-opacity-100"
@@ -328,10 +328,10 @@ function listAnggota({ users }) {
                 <path d="M342.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L274.7 256 105.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
               </svg>
             </button>
-          </div>
+          </div> */}
           {/* penutup tabel */}
           {/* tabel */}
-          {/* <div className="mt-10 container">
+          <div className="mt-10 container">
             <table className="w-full table-auto mb-8 text-sm text-left text-gray-500">
               <thead className="text-xs text-gray-700 uppercase">
                 <tr>
@@ -506,9 +506,9 @@ function listAnggota({ users }) {
                 })}
               </tbody>
             </table>
-          </div> */}
+          </div>
           {/* pagination */}
-          {/* <div className="flex justify-end items-center">
+          <div className="flex justify-end items-center">
             <p className="text-sm">
               Menampilkan
               <span className="font-semibold px-1">1</span>
@@ -535,7 +535,7 @@ function listAnggota({ users }) {
                 <path d="M342.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L274.7 256 105.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
               </svg>
             </button>
-          </div> */}
+          </div>
         </div>
       </main>
     </Layout>

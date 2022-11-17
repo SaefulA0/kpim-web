@@ -1,7 +1,7 @@
-import Layout from "../../components/layout";
-import Profile from "../../components/profile";
-import CardBarang from "../../components/card/cardBarang";
-import CardTotalPinjaman from "../../components/card/cardTotalPinjaman";
+import Layout from "../../../components/layout";
+import Profile from "../../../components/profile";
+import CardBarang from "../../../components/card/cardBarang";
+import CardTotalPinjaman from "../../../components/card/cardTotalPinjaman";
 
 export default function detailPinjaman() {
   return (

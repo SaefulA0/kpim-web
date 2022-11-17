@@ -1,26 +1,21 @@
-import Profile from "./profile2";
-import Link from "next/link";
 import { useSession } from "next-auth/react";
+import Profile from "./profile";
 
-export default function HeaderPinjaman() {
+export default function Header() {
   const { data: session, status } = useSession();
   if (status === "authenticated") {
     return (
       <>
-        <div className="flex flex-wrap justify-between">
+        <div className="flex flex-wrap justify-between pb-6">
           <div>
             {/* Header */}
-            <h1 className="text-2xl font-bold text-[#303030]">
+            <h1 className="text-2xl mb-6 font-bold text-[#303030]">
               Daftar Pinjaman{" "}
               <span className="font-bold underline text-[#303030]">
                 {session.user.user.nama_anggota}
               </span>
             </h1>
-            <Link href="/">
-              <button className="px-4 py-1 my-8 text-white shadow-md rounded-full bg-[#38A169]">
-                Bayar Pinjaman
-              </button>
-            </Link>
+            <span>Semua ()</span>
           </div>
           <div>
             {/* Profil component */}

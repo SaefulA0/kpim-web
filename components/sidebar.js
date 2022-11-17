@@ -1,7 +1,7 @@
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import Link from "next/link";
 import { Fragment } from "react";
-import Profile2 from "./profile2";
+import Profil from "./profil";
 
 function SideNavbar() {
   return (
@@ -22,7 +22,7 @@ function SideNavbar() {
             {/* Nav index */}
             <Link href="/">
               <div className="w-3/5 mx-auto cursor-pointer md:my-4">
-                <img src="../img/Logo.svg" alt="Logo" className="mx-auto" />
+                <img src="../../img/Logo.svg" alt="Logo" className="mx-auto" />
               </div>
             </Link>
             <div className="mt-4">
@@ -218,7 +218,7 @@ function SideNavbar() {
               </Link> */}
             </div>
             <div className="md:hidden absolute bottom-5">
-              <Profile2 />
+              <Profil />
             </div>
           </div>
         </div>

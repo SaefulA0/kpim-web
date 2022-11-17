@@ -215,7 +215,7 @@ export async function getStaticPaths() {
   const paths = users.map((user) => {
     return {
       params: {
-        anggotaId: `${user.id}`,
+        anggotaId: `${user.username}`,
       },
     };
   });

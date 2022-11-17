@@ -10,7 +10,7 @@ export default function Profile() {
           <div className="flex items-center">
             <div>
               <img
-                src="../img/defaultUser.png"
+                src="../../img/defaultUser.png"
                 alt="Logo"
                 width={42}
                 height={42}
