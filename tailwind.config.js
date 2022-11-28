@@ -8,6 +8,8 @@ module.exports = {
     extend: {
       backgroundImage: {
         heroBG: "url(../public/img/heroBG.png)",
+        cardBG1: "url(../public/img/dashboardsvg/card-bg-1.svg)",
+        cardBG2: "url(../public/img/dashboardsvg/card-bg-2.svg)",
       },
     },
     fontFamily: {
