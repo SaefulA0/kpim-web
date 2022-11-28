@@ -16,7 +16,7 @@ export default function Layout(props) {
     <>
       <Head>
         <title>{props.title}</title>
-        <link rel="icon" type="image/x-icon" href="../img/Logo.svg" />
+        <link rel="icon" type="image/x-icon" href="../../img/Logo.svg" />
       </Head>
       <main>
         <div className="flex">

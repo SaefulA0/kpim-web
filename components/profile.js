@@ -13,7 +13,7 @@ function profile() {
             <div className="flex cursor-pointer bg-[#68D391] bg-opacity-20 pl-3 pr-4 py-2 items-center rounded-2xl">
               <div>
                 <img
-                  src="../img/defaultUser.png"
+                  src="../../img/defaultUser.png"
                   alt="Logo"
                   width={42}
                   height={42}
