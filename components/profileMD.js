@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 
-function profile() {
+export default function profileMD() {
   const { data: session, status } = useSession();
   if (status === "authenticated") {
     return (
@@ -13,7 +13,7 @@ function profile() {
             <div className="flex cursor-pointer bg-[#68D391] bg-opacity-20 pl-3 pr-4 py-2 items-center rounded-2xl">
               <div>
                 <img
-                  src="../../img/defaultUser.png"
+                  src="../../../img/defaultUser.png"
                   alt="Logo"
                   width={42}
                   height={42}
@@ -50,7 +50,7 @@ function profile() {
             <Menu.Items className="absolute z-10 w-36 mt-1 right-0 divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <Menu.Item>
                 <a
-                  href="/"
+                  href="/dashboard/profil/editProfile"
                   className="flex w-full items-center cursor-pointer text-sm rounded-t-md px-2 py-2 hover:bg-[#68D391] hover:bg-opacity-20"
                 >
                   <svg
@@ -67,7 +67,7 @@ function profile() {
               </Menu.Item>
               <Menu.Item>
                 <a
-                  href="/"
+                  href="/dashboard/profil/detailProfile"
                   className="flex w-full items-center cursor-pointer text-sm rounded-b-md px-2 py-2 hover:bg-[#68D391] hover:bg-opacity-20"
                 >
                   <svg
@@ -112,4 +112,3 @@ function profile() {
     </>
   );
 }
-export default profile;

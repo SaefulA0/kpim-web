@@ -1,8 +1,9 @@
-import Layout from "../../../components/layout";
-import Profile from "../../../components/profile";
-import CardBarangL from "../../../components/card/cardBarangL";
-import CardBarangR from "../../../components/card/cardBarangR";
-import CardTotalPinjaman from "../../../components/card/cardTotalPinjaman";
+import Layout from "../../../../components/layout";
+import Header from "../../../../components/header";
+import Profile from "../../../../components/profileMD";
+import CardBarangL from "../../../../components/card/cardBarangL";
+import CardBarangR from "../../../../components/card/cardBarangR";
+import CardTotalPinjaman from "../../../../components/card/cardTotalPinjaman";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
@@ -12,35 +13,34 @@ export default function detailPinjaman({ data, user, dataDetail, dataBarang }) {
   const router = useRouter();
   const { status } = useSession();
 
-  // console.log(barangs);
-
   useEffect(() => {
     if (status === "unauthenticated") Router.replace("/login");
   }, [status]);
+
+  // useEffect(() => {
+  //   const midtransScriptUrl = "https://app.sandbox.midtrans.com/snap/snap.js";
+  //   const myMidtransClientKey = "your-client-key-goes-here";
+
+  //   let scriptTag = document.createElement("script");
+  //   scriptTag.src = midtransScriptUrl;
+  //   scriptTag.setAttribute("data-client-key", myMidtransClientKey);
+
+  //   document.body.appendChild(scriptTag);
+  //   return () => {
+  //     document.body.removeChild(scriptTag);
+  //   };
+  // }, []);
 
   return (
     <Layout title="Detail Pinjaman">
       <main className="font-inter">
         <div className="w-auto min-h-screen mx-8 mt-12 pt-2 mb-14">
           {/* header */}
-          <div className="flex flex-wrap justify-between pb-6">
-            <div>
-              {/* Header */}
-              <h1 className="text-2xl mb-6 font-bold text-[#303030]">
-                Detail Pinjaman
-              </h1>
-            </div>
-            <div>
-              {/* Profil component */}
-              <div className="hidden md:flex justify-end items-center">
-                <Profile />
-              </div>
-            </div>
-          </div>
+          <Header title="Detail Pinjaman" />
           {/* main */}
-          <div className="flex flex-wrap md:flex-nowrap">
-            {/* flex kanan */}
-            <div className="w-full h-fit container rounded-lg mb-8 md:mb-0 py-8 px-12 md:mr-16 bg-[#F7FAFC]">
+          <div className="flex flex-wrap justify-between md:flex-nowrap">
+            {/* flex kiri  */}
+            <div className="md:w-full h-fit container rounded-lg mb-8 md:mb-0 py-8 px-12 bg-[#F7FAFC]">
               <div className="flex flex-col justify-center">
                 {/* Nama */}
                 <div className="my-3">
@@ -120,30 +120,33 @@ export default function detailPinjaman({ data, user, dataDetail, dataBarang }) {
                   </label>
                 </div>
                 {/* section button */}
-                <div className="flex justify-between my-12">
+                <div className="flex justify-between mt-12">
                   {/* button batal */}
                   <button
                     type="button"
                     onClick={() => router.back()}
-                    className="w-full md:w-fit px-7 mr-4 md:px-16 lg:px-20 py-2 rounded-lg bg-[#718096] hover:bg-[#4A5568] text-white shadow-md"
+                    className="w-full  px-7 mr-4 md:px-16 lg:px-20 py-2 rounded-lg bg-[#718096] hover:bg-[#4A5568] text-white shadow-md"
                   >
                     Kembali
                   </button>
                   {/* button simpan */}
-                  <button className="w-full md:w-fit px-7 md:px-16 lg:px-20 py-2 rounded-lg bg-[#48BB78] hover:bg-[#38A169] text-white shadow-md">
+                  <button
+                    // onClick={}
+                    className="w-full  px-7 md:px-16 lg:px-20 py-2 rounded-lg bg-[#48BB78] hover:bg-[#38A169] text-white shadow-md"
+                  >
                     Bayar
                   </button>
                 </div>
               </div>
             </div>
-            {/* flex kiri */}
-            <div className="h-auto w-full md:w-3/4 container rounded-lg py-8 px-6 md:px-12 bg-[#F0FFF4]">
+            {/* flex kanan */}
+            <div className="md:ml-16 h-auto md:w-full bg-cardBG3 bg-no-repeat bg-center container rounded-lg py-8 px-5 md:px-12 bg-[#F0FFF4]">
               <div className="md:relative flex flex-col items-center h-fit md:min-h-screen">
-                <p className="text-lg font-bold mb-5">
+                <p className="w-full text-left text-lg font-bold mb-5">
                   Daftar Barang Yang Dipinjam
                 </p>
                 <div className="flex mb-12 md:pb-40">
-                  <div className="w-full">
+                  <div>
                     {dataBarang.map((dataBarang) => {
                       return (
                         <div key={dataBarang.barang.id}>
@@ -152,7 +155,7 @@ export default function detailPinjaman({ data, user, dataDetail, dataBarang }) {
                       );
                     })}
                   </div>
-                  <div className="w-full">
+                  <div>
                     {dataDetail.map((dataDetail) => {
                       return (
                         <div key={dataDetail.id}>
@@ -162,7 +165,7 @@ export default function detailPinjaman({ data, user, dataDetail, dataBarang }) {
                     })}
                   </div>
                 </div>
-                <div className="md:absolute bottom-0 w-full">
+                <div className="w-full md:absolute bottom-0">
                   <CardTotalPinjaman data={data} />
                 </div>
               </div>
@@ -218,7 +221,7 @@ export async function getStaticProps(context) {
       data: pinjamanData.pinjaman,
       user: pinjamanData.pinjaman.user,
       dataDetail: detailData.detail_pinjaman,
-      dataBarang: barang,
+      dataBarang: barangData,
     },
   };
 }

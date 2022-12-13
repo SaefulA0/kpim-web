@@ -1,7 +1,7 @@
-import Layout from "../../components/layout";
-import Header from "../../components/header";
+import Layout from "../../../components/layout";
+import Header from "../../../components/header";
 import { getSession } from "next-auth/react";
-import TableSimpananWajib from "../../components/table/tableSimpananWajib";
+import TableSimpananWajib from "../../../components/table/tableSimpananWajib";
 
 export default function simpanaWajib({ data }) {
   return (
@@ -9,7 +9,7 @@ export default function simpanaWajib({ data }) {
       <main className="font-inter">
         <div className="w-auto min-h-screen mx-8 mt-12 pt-2 mb-14">
           {/* header */}
-          <Header title="Simpanan Wajib" />
+          <Header title="Daftar Simpanan Wajib" />
           <div className="w-full min-h-screen">
             {/* tabel */}
             <TableSimpananWajib data={data} />
@@ -31,7 +31,12 @@ export async function getServerSideProps(req, res) {
     };
   }
   const response = await fetch(
-    `http://kpim_backend.test/api/simpanan-wajib?username=${session.user.user.username}`
+    `http://kpim_backend.test/api/simpanan-wajib?username=${session.user.user.username}`,
+    {
+      headers: {
+        Authorization: `Bearer ${session.user.access_token}`,
+      },
+    }
   );
   const data = await response.json();
 

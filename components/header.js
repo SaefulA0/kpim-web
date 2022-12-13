@@ -1,4 +1,4 @@
-import Profile from "./profile";
+import Profile from "./profileMD";
 
 export default function Header(props) {
   return (
@@ -7,9 +7,8 @@ export default function Header(props) {
         <div>
           {/* Header */}
           <h1 className="text-2xl mb-6 font-bold text-[#303030]">
-            Daftar {props.title}
+            {props.title}
           </h1>
-          <span>Semua ()</span>
         </div>
         <div>
           {/* Profil component */}
