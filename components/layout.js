@@ -16,11 +16,11 @@ export default function Layout(props) {
     <>
       <Head>
         <title>{props.title}</title>
-        <link rel="icon" type="image/x-icon" href="../../img/Logo.svg" />
+        <link rel="icon" type="image/x-icon" href="../../../img/Logo.svg" />
       </Head>
       <main>
         <div className="flex">
-          <div className="basis-auto border-r-2">
+          <div className="basis-auto md:border-r-2">
             <SideNavbar />
           </div>
           <div className="basis-full">{props.children}</div>
