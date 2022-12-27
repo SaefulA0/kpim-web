@@ -1,24 +1,27 @@
 import Layout from "../../../components/layout";
 import { getSession, useSession } from "next-auth/react";
 import Header from "../../../components/header";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ModalEditSuccess from "../../../components/modals/modalEditSucces";
 import ModalEditFailed from "../../../components/modals/modalFailedEdit";
 import ModalValEdit from "../../../components/modals/modalValEdit";
+import { signOut } from "next-auth/react";
+import BtnGantiPass from "../../../components/buttons/btnGantiPass";
 
-function editProfile({ data, token }) {
+export default function editProfile({ data, token }) {
+  const { data: session, status } = useSession();
+  const router = useRouter([]);
   const user = `${data.username}`;
   const nik = `${data.nik}`;
-  const status = `${data.status}`;
   const [modalEditSucces, setModalEditSucces] = useState(false);
   const [modalEditFailed, setModalEditFailed] = useState(false);
-  const router = useRouter([]);
-
+  const [image, setImage] = useState(null);
+  const [createObjectURL, setCreateObjectURL] = useState(null);
+  const [name, setName] = useState("");
   const [userInfo, setUserInfo] = useState({
     nama_anggota: `${data.nama_anggota}`,
-    // avatar: `${data.avatar}`,
     password: `${data.password}`,
     ttl: `${data.ttl}`,
     alamat: `${data.alamat}`,
@@ -26,9 +29,32 @@ function editProfile({ data, token }) {
     status: `${data.status}`,
   });
 
+  useEffect(() => {
+    if (status === "unauthenticated") signOut(), Router.replace("/login");
+  }, [status]);
+
+  // show avatar in client
+  const uploadToClient = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      const i = event.target.files[0];
+      setName(event.target.files[0].name);
+      setImage(i);
+      setCreateObjectURL(URL.createObjectURL(i));
+    }
+  };
+
   const handleUpdate = async (e) => {
     e.preventDefault();
 
+    // update avatar in local
+    const body = new FormData();
+    body.append("file", image);
+    const response = await fetch("/api/upload", {
+      method: "POST",
+      body,
+    });
+
+    // update biodata
     await axios({
       method: "PUT",
       url: `http://kpim_backend.test/api/user/${user}`,
@@ -36,8 +62,8 @@ function editProfile({ data, token }) {
         Authorization: `Bearer  ${token}`,
       },
       data: {
+        avatar: name,
         username: user,
-        password: userInfo.password,
         nik: nik,
         nama_anggota: userInfo.nama_anggota,
         alamat: userInfo.alamat,
@@ -69,23 +95,23 @@ function editProfile({ data, token }) {
               <form onSubmit={handleUpdate}>
                 <div className="flex flex-col justify-center">
                   {/* field Avatar */}
-                  {/* <div className="my-2">
+                  <div className="my-2">
                     <span className="block text-sm mb-2 font-semibold text-[#667080]">
                       Foto Profil
                     </span>
                     <label className="flex cursor-pointer items-center space-x-6">
                       <div className="shrink-0">
-                        {data.avatar ? (
+                        {createObjectURL ? (
                           <img
                             className="object-cover w-16 h-16 rounded-full"
-                            src={data.avatar}
-                            alt="profile photo"
+                            src={createObjectURL}
+                            alt="profile photo 2"
                           />
                         ) : (
                           <img
                             className="object-cover w-16 h-16 rounded-full"
-                            src="../../img/defaultUser.png"
-                            alt="profile photo"
+                            src={`../../../uploads/${data.avatar}`}
+                            alt="profile photo 1"
                           />
                         )}
                       </div>
@@ -94,17 +120,15 @@ function editProfile({ data, token }) {
                           type="file"
                           name="avatar"
                           defaultValue={data.avatar}
-                          onChange={({ target }) =>
-                            setAvatar({
-                              ...avatar,
-                              avatar: target.value,
-                            })
-                          }
+                          onChange={uploadToClient}
                           className="block w-fit text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                         />
                       </label>
                     </label>
-                  </div> */}
+                  </div>
+                  <div className="my-2">
+                    <BtnGantiPass />
+                  </div>
                   {/* field Nama */}
                   <div className="my-2">
                     <label className="block">
@@ -121,28 +145,6 @@ function editProfile({ data, token }) {
                           setUserInfo({
                             ...userInfo,
                             nama_anggota: target.value,
-                          })
-                        }
-                        className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-                      />
-                    </label>
-                  </div>
-                  {/* field password */}
-                  <div className="my-2">
-                    <label className="block">
-                      <span className="block text-sm font-semibold text-[#667080]">
-                        Password
-                      </span>
-                      <input
-                        type="password"
-                        name="password"
-                        required
-                        placeholder={data.password}
-                        defaultValue={data.password}
-                        onChange={({ target }) =>
-                          setUserInfo({
-                            ...userInfo,
-                            password: target.value,
                           })
                         }
                         className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
@@ -217,12 +219,25 @@ function editProfile({ data, token }) {
                   </div>
                   {/* Alert */}
                   <div
-                    className="p-4 mt-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
+                    className="flex items-center p-3 mt-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
                     role="alert"
                   >
-                    <span className="font-medium">Danger alert!</span> Data
-                    dibawah ini tidak dapat diubah oleh anggota, silakan hubungi
-                    staff Koperasi
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={2}
+                      stroke="currentColor"
+                      className="w-8 h-8 mr-1"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
+                      />
+                    </svg>
+                    Data dibawah ini tidak dapat diubah oleh anggota,
+                    <br /> silakan hubungi staff Koperasi
                   </div>
                   {/* field Username */}
                   <div className="my-2">
@@ -316,18 +331,16 @@ function editProfile({ data, token }) {
                     >
                       Kembali
                     </button>
-                    <ModalValEdit />
+                    <div className="w-full">
+                      <ModalValEdit />
+                    </div>
                   </div>
                 </div>
               </form>
             </div>
             {/* flex kanan */}
-            <div className="w-full container flex rounded-lg py-8 px-12 justify-center items-center bg-[#F0FFF4]">
-              <img
-                src="../../img/newLogoKI.png"
-                alt="Logo"
-                className="aspect-square"
-              />
+            <div className="w-full container bg-cardBG3 bg-no-repeat bg-center flex rounded-lg py-8 px-12 justify-center bg-[#F0FFF4]">
+              {/* <CardChangePWD /> */}
             </div>
           </div>
         </div>
@@ -335,8 +348,6 @@ function editProfile({ data, token }) {
     </Layout>
   );
 }
-
-export default editProfile;
 
 export async function getServerSideProps(req, res) {
   const session = await getSession(req, res);
@@ -358,6 +369,14 @@ export async function getServerSideProps(req, res) {
     }
   );
   const data = await response.json();
+  if (data.message === "This action is unauthorized.") {
+    return {
+      redirect: {
+        destination: "/session",
+        permanent: false,
+      },
+    };
+  }
 
   return {
     props: {

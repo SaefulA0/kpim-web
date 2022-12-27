@@ -24,7 +24,7 @@ export default function landingPage() {
               Menjadi Koperasi yang mampu membangun potensi ekonomi untuk
               kesejahteraan masyarakat
             </p>
-            <Link href={"/dbdPengguna"}>
+            <Link href={"/dashboard"}>
               <button className="text-white bg-[#48BB78] shadow-lg border-0 py-2 px-6 focus:outline-none hover:bg-[#276749] rounded text-base">
                 Dashboard Koperasi
               </button>

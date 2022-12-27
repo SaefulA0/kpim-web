@@ -1,9 +1,19 @@
 import Layout from "../../../components/layout";
 import Header from "../../../components/header";
-import { getSession } from "next-auth/react";
+import { getSession, signOut } from "next-auth/react";
 import TableSimpananWajib from "../../../components/table/tableSimpananWajib";
+import { useEffect } from "react";
+import { useSession } from "next-auth/react";
+import Router from "next/router";
+import { useRouter } from "next/router";
 
 export default function simpanaWajib({ data }) {
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (status === "unauthenticated") signOut(), Router.replace("/login");
+  }, [status]);
+
   return (
     <Layout title="Daftar Simpanan Wajib">
       <main className="font-inter">
@@ -30,15 +40,27 @@ export async function getServerSideProps(req, res) {
       },
     };
   }
+  const token = session.user.access_token;
+  const username = session.user.user.username;
+
   const response = await fetch(
-    `http://kpim_backend.test/api/simpanan-wajib?username=${session.user.user.username}`,
+    `http://kpim_backend.test/api/simpanan-wajib?username=${username}`,
     {
       headers: {
-        Authorization: `Bearer ${session.user.access_token}`,
+        Authorization: `Bearer ${token}`,
       },
     }
   );
   const data = await response.json();
+
+  if (data.message === "This action is unauthorized.") {
+    return {
+      redirect: {
+        destination: "/session",
+        permanent: false,
+      },
+    };
+  }
 
   return {
     props: {

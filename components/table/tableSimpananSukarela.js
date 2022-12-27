@@ -5,13 +5,8 @@ import { Fragment } from "react";
 export default function TableSimpananSukarela({ data }) {
   return (
     <>
-      {/* <div className="flex justify-between">
-        <Link href="/dashboard/simpananSukarela/tambahSimpananSukarela">
-          <button className="px-4 py-1.5 h-fit text-white shadow-md rounded-full bg-[#38A169] hover:bg-[#288755]">
-            Tambah Simpanan Sukarela +
-          </button>
-        </Link>
-        <div className="flex">
+      <div className="relative w-full h-5">
+        <div className="flex absolute right-0">
           <Popover className="relative mr-2">
             <Popover.Button className="w-8 h-8 flex outline-none bg-slate-50 shadow-inner rounded-full items-center justify-center hover:bg-slate-100">
               <svg
@@ -70,7 +65,7 @@ export default function TableSimpananSukarela({ data }) {
             </div>
           </form>
         </div>
-      </div> */}
+      </div>
       <div className="mt-10 container">
         <table className="w-full table-auto mb-8 text-sm text-left text-gray-500">
           <thead className="text-xs text-gray-700 uppercase">

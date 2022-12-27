@@ -7,7 +7,7 @@ export default NextAuth({
       id: "login",
       async authorize(credentials) {
         try {
-          const res = await fetch("http://kpim_backend.test/api/login", {
+          const res = await fetch("http://kpim_backend.test/api/login?", {
             method: "POST",
             body: JSON.stringify(credentials),
             headers: { "Content-Type": "application/json" },
@@ -32,6 +32,7 @@ export default NextAuth({
 
       return token;
     },
+
     async session({ session, token }) {
       session.accessToken = token.accessToken;
       session.user = token.user;
@@ -48,5 +49,5 @@ export default NextAuth({
     },
   },
   // use env variable in production
-  secret: "SxByQjyiod54hf33UTMgOoGUc6IKNvxaFZIfZiXnA8vRjXgIdokUE6LOWNC2G3wp",
+  secret: "VLRiDnWvLTc60iESAQ3Wi11XW8c6g1g24g5v7j317o4YwvOBTCQeJnQe9OlU4TMV",
 });

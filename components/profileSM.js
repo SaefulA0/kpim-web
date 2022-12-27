@@ -10,12 +10,23 @@ export default function ProfileSM() {
           <Link href="/dashboard/profil/detailProfile">
             <div className="flex cursor-pointer items-center px-2 py-4">
               <div>
-                <img
-                  src="../../../img/defaultUser.png"
-                  alt="Logo"
-                  width={42}
-                  height={42}
-                />
+                {session.user.user.avatar ? (
+                  <img
+                    src={`../../../uploads/${session.user.user.avatar}`}
+                    alt="Avatar"
+                    width={42}
+                    height={42}
+                    className="rounded-md"
+                  />
+                ) : (
+                  <img
+                    src={`../../../img/defaultUser.png`}
+                    alt="Avatar"
+                    width={42}
+                    height={42}
+                    className="rounded-md"
+                  />
+                )}
               </div>
               <div className="mx-2">
                 <h5 className="font-medium truncate text-left text-sm mb-1">
@@ -33,12 +44,17 @@ export default function ProfileSM() {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 512 512"
-              width="18"
-              height="18"
-              className="fill-gray-800"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="2"
+              stroke="currentColor"
+              className="w-6 h-6 stroke-gray-700 mr-1.5"
             >
-              <path d="M160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96C43 32 0 75 0 128V384c0 53 43 96 96 96h64c17.7 0 32-14.3 32-32s-14.3-32-32-32H96c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32h64zM504.5 273.4c4.8-4.5 7.5-10.8 7.5-17.4s-2.7-12.9-7.5-17.4l-144-136c-7-6.6-17.2-8.4-26-4.6s-14.5 12.5-14.5 22v72H192c-17.7 0-32 14.3-32 32l0 64c0 17.7 14.3 32 32 32H320v72c0 9.6 5.7 18.2 14.5 22s19 2 26-4.6l144-136z" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
+              />
             </svg>
           </button>
         </div>
@@ -46,9 +62,5 @@ export default function ProfileSM() {
     );
   }
 
-  return (
-    <>
-      <Link href="/login">login duls bos</Link>
-    </>
-  );
+  return null;
 }
