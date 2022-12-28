@@ -1,7 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 
-export default function ModalEditSuccess() {
+export default function ModalEditPassSuccess() {
   let [isOpen, setIsOpen] = useState(true);
 
   function closeModal() {
@@ -48,16 +48,15 @@ export default function ModalEditSuccess() {
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    Data Diri Berhasil Diedit
+                    Password Berhasil Diedit
                   </Dialog.Title>
                   <div className="mt-2">
                     <p className="text-sm text-gray-500">
-                      Data diri anda berhasil diedit,
+                      Password anda berhasil diedit.
                       <br />
                       silakan lanjutkan
                     </p>
                   </div>
-
                   <div className="mt-4">
                     <button
                       type="button"

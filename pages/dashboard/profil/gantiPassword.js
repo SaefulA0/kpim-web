@@ -4,24 +4,28 @@ import Header from "../../../components/header";
 import { Router, useRouter } from "next/router";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import ModalEditSuccess from "../../../components/modals/modalEditSucces";
-import ModalEditFailed from "../../../components/modals/modalFailedEdit";
-import ModalValEdit from "../../../components/modals/modalValEdit";
+import ModalEditPassSuccess from "../../../components/modals/modalChangePassword/modalEditPassSucces";
+import ModalEditPassFailed from "../../../components/modals/modalChangePassword/modalEditPassFailed";
+import ModalValEditPass from "../../../components/modals/modalChangePassword/modalValEditPass";
 import { signOut } from "next-auth/react";
 
-export default function changePassword({ data, token }) {
+export default function gantiPassword({ data, token }) {
   const { data: session, status } = useSession();
-  const [modalEditSucces, setModalEditSucces] = useState(false);
-  const [modalEditFailed, setModalEditFailed] = useState(false);
+  const user = `${data.username}`;
+  const [modalEditPassSucces, setModalEditPassSuccess] = useState(false);
+  const [modalEditPassFailed, setModalEditPassFailed] = useState(false);
   const router = useRouter([]);
   const [userInfo, setUserInfo] = useState({
-    password: `${data.password}`,
+    username: `${data.username}`,
+    old_password: "",
+    password: "",
+    confirm_password: "",
   });
 
   const handleUpdate = async (e) => {
     e.preventDefault();
 
-    // update biodata
+    // update password
     await axios({
       method: "PUT",
       url: `http://kpim_backend.test/api/user/${user}`,
@@ -29,13 +33,14 @@ export default function changePassword({ data, token }) {
         Authorization: `Bearer  ${token}`,
       },
       data: {
+        username: userInfo.username,
+        old_password: userInfo.old_password,
         password: userInfo.password,
+        confirm_password: userInfo.confirm_password,
       },
-    }).then(({ error }) => {
-      if (error) {
-        setModalEditFailed(true);
-      } else {
-        setModalEditSucces(true);
+    }).catch(function (error) {
+      if (error.response) {
+        setModalEditPassFailed(true);
       }
     });
   };
@@ -47,8 +52,8 @@ export default function changePassword({ data, token }) {
   return (
     <Layout title="Edit Password">
       <main className="font-inter">
-        {modalEditSucces ? <ModalEditSuccess /> : null}
-        {modalEditFailed ? <ModalEditFailed /> : null}
+        {modalEditPassSucces ? <ModalEditPassSuccess /> : null}
+        {modalEditPassFailed ? <ModalEditPassFailed /> : null}
         <div className="w-auto min-h-screen mx-8 mt-12 pt-2 mb-14">
           {/* header */}
           <Header title="Ganti Password" />
@@ -59,12 +64,24 @@ export default function changePassword({ data, token }) {
               <form onSubmit={handleUpdate}>
                 <div className="flex flex-col justify-center">
                   <div
-                    className="flex p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg"
+                    className="flex items-center justify-between p-5 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg"
                     role="alert"
                   >
+                    <ul className="list-outside list-disc whitespace-normal px-4 border-r-2 border-blue-200">
+                      <li className="font-medium">
+                        pastikan password lama kamu sesuai
+                      </li>
+                      <li className="font-medium">
+                        Password baru harus memiliki minimal 8 karakter
+                      </li>
+                      <li className="font-medium">
+                        pastikan konfirmasi passsword sudah sesuai dengan
+                        password baru
+                      </li>
+                    </ul>
                     <svg
                       aria-hidden="true"
-                      className="flex-shrink-0 inline w-5 h-5 mr-3"
+                      className="flex-shrink-0 inline w-6 h-6 mx-3 "
                       fill="currentColor"
                       viewBox="0 0 20 20"
                       xmlns="http://www.w3.org/2000/svg"
@@ -75,30 +92,22 @@ export default function changePassword({ data, token }) {
                         clipRule="evenodd"
                       ></path>
                     </svg>
-                    <span className="sr-only">Info</span>
-                    <div>
-                      <span className="font-medium">
-                        Password harus memiliki minimal 8 karakter
-                      </span>
-                    </div>
                   </div>
                   {/* field old password */}
                   <div className="my-2">
                     <label className="block">
                       <span className="block text-sm font-semibold text-[#667080]">
-                        Password Lama
+                        Masukan Password Lama
                       </span>
                       <input
                         type="password"
                         name="password"
                         minLength={8}
                         required
-                        placeholder={data.password}
-                        defaultValue={data.password}
                         onChange={({ target }) =>
                           setUserInfo({
                             ...userInfo,
-                            password: target.value,
+                            old_password: target.value,
                           })
                         }
                         className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
@@ -109,15 +118,13 @@ export default function changePassword({ data, token }) {
                   <div className="my-2">
                     <label className="block">
                       <span className="block text-sm font-semibold text-[#667080]">
-                        Password Baru
+                        Masukan Password Baru
                       </span>
                       <input
                         type="password"
                         name="password"
                         minLength={8}
                         required
-                        placeholder={data.password}
-                        defaultValue={data.password}
                         onChange={({ target }) =>
                           setUserInfo({
                             ...userInfo,
@@ -132,18 +139,16 @@ export default function changePassword({ data, token }) {
                   <div className="my-2">
                     <label className="block">
                       <span className="block text-sm font-semibold text-[#667080]">
-                        Konfirmasi Password
+                        Konfirmasi Password baru
                       </span>
                       <input
                         type="password"
                         name="password"
                         required
-                        placeholder={data.password}
-                        defaultValue={data.password}
                         onChange={({ target }) =>
                           setUserInfo({
                             ...userInfo,
-                            password: target.value,
+                            confirm_password: target.value,
                           })
                         }
                         className="mt-1 px-3 py-2 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
@@ -161,7 +166,7 @@ export default function changePassword({ data, token }) {
                       Kembali
                     </button>
                     <div className="w-full">
-                      <ModalValEdit />
+                      <ModalValEditPass />
                     </div>
                   </div>
                 </div>

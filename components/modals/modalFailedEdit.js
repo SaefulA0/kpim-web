@@ -47,11 +47,11 @@ export default function ModalEditFailed() {
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    Data Anggota Gagal Diedit
+                    Data Diri Gagal Diedit
                   </Dialog.Title>
                   <div className="mt-2">
                     <p className="text-sm text-gray-500">
-                      Data anggota gagal diedit,
+                      Data diri anda gagal diedit
                       <br />
                       silakan ulangi
                     </p>

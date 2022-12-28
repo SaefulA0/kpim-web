@@ -119,6 +119,17 @@ export default function detailPinjaman({ data, user, dataDetail, dataBarang }) {
                     </p>
                   </label>
                 </div>
+                {/* Status Pinjaman */}
+                <div className="my-3">
+                  <label className="block border-b-2">
+                    <span className="block text-sm font-semibold text-[#667080]">
+                      Status Pinjaman
+                    </span>
+                    <p className="text-[#667080] text-sm my-2 border-[#667080]">
+                      {data.status ? "Lunas" : "Belum Lunas"}
+                    </p>
+                  </label>
+                </div>
                 {/* section button */}
                 <div className="flex justify-between mt-12">
                   {/* button batal */}
@@ -130,13 +141,22 @@ export default function detailPinjaman({ data, user, dataDetail, dataBarang }) {
                     Kembali
                   </button>
                   {/* button simpan */}
-                  <a
-                    // onClick={}
-                    href={`/dashboard/pinjaman/cicilan/${data.id}`}
-                    className="w-1/2 text-center px-7 md:px-14 py-2 rounded-lg bg-[#48BB78] hover:bg-[#38A169] text-white shadow-md"
-                  >
-                    Bayar Cicilan
-                  </a>
+                  {data.status ? (
+                    <button
+                      disabled
+                      className="w-1/2 text-center px-7 md:px-14 py-2 rounded-lg bg-[#48BB78] hover:bg-[#38A169] text-white shadow-md"
+                    >
+                      Bayar Cicilan
+                    </button>
+                  ) : (
+                    <a
+                      type="button"
+                      href={`/dashboard/pinjaman/bayarCicilan/${data.id}`}
+                      className="w-1/2 text-center px-7 md:px-14 py-2 rounded-lg bg-[#48BB78] hover:bg-[#38A169] text-white shadow-md"
+                    >
+                      Bayar Cicilan
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

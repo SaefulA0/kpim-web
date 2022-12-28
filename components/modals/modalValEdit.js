@@ -57,12 +57,12 @@ export default function ModalValEdit() {
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    Konfirmasi Edit Data Anggota
+                    Konfirmasi Edit Data Diri
                   </Dialog.Title>
                   <div className="mt-2">
                     <p className="text-sm text-gray-500">
                       Apakah anda yakin <br />
-                      ingin mengedit data anggota ini?
+                      ingin mengedit data diri anda?
                     </p>
                   </div>
                   <div className="w-full flex justify-center gap-4 mt-4">
