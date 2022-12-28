@@ -3,7 +3,7 @@ export default function BtnGantiPass() {
     <>
       <a
         type="button"
-        href="/dashboard/profil/changePassword"
+        href="/dashboard/profil/gantiPassword"
         className="w-fit flex px-4 items-center justify-between h-fit bg-white hover:bg-[#EFF6FF] border border-gray-200 rounded-lg shadow-md"
       >
         <div className="flex items-center">

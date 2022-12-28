@@ -22,12 +22,12 @@ function SideNavbar() {
             {/* Nav index */}
             <Link href="/">
               <div className="w-3/5 mx-auto cursor-pointer md:mt-4 md:mb-10">
-                <Image
-                  src="/../../../img/Logo.svg"
+                <img
+                  src="/../../../../img/Logo.svg"
                   alt="Logo"
                   width={400}
                   height={400}
-                  priority
+                  priority="true"
                   className="mx-auto"
                 />
               </div>

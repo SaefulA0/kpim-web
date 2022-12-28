@@ -1,12 +1,11 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 
-export default function ModalEditSuccess() {
+export default function ModalEditPassFailed() {
   let [isOpen, setIsOpen] = useState(true);
 
   function closeModal() {
     setIsOpen(false);
-    location.reload();
   }
 
   return (
@@ -39,7 +38,7 @@ export default function ModalEditSuccess() {
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 align-middle shadow-xl transition-all">
                   <div className="mx-auto cursor-pointer md:my-4">
                     <img
-                      src="../../img/modalsIMG/SuccessLogo.png"
+                      src="../../img/modalsIMG/FailLogo.png"
                       alt="Logo"
                       className="mx-auto"
                     />
@@ -48,13 +47,13 @@ export default function ModalEditSuccess() {
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    Data Diri Berhasil Diedit
+                    Password Gagal Diedit
                   </Dialog.Title>
                   <div className="mt-2">
                     <p className="text-sm text-gray-500">
-                      Data diri anda berhasil diedit,
+                      Password anda gagal diedit
                       <br />
-                      silakan lanjutkan
+                      silakan ulangi
                     </p>
                   </div>
 

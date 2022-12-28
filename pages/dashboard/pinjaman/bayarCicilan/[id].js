@@ -44,7 +44,7 @@ export default function bayarPinjaman({
       <main className="font-inter">
         <div className="w-auto min-h-screen mx-8 mt-12 pt-2 mb-14">
           {/* header */}
-          <Header title="Bayar Cicilan Pinjaman" />
+          <Header title="Bayar Cicilan" />
           {/* main */}
           <div className="flex flex-wrap justify-between md:flex-nowrap">
             {/* flex kiri */}
@@ -63,21 +63,6 @@ export default function bayarPinjaman({
                         name="nama_anggota"
                         disabled
                         defaultValue={user.nama_anggota}
-                        className="mt-1 px-3 py-2 text-gray-500 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-                      />
-                    </label>
-                  </div>
-                  {/* field cicilan ke- */}
-                  <div className="my-2">
-                    <label className="block">
-                      <span className="block text-sm font-semibold text-[#667080]">
-                        Cicilan Ke-
-                      </span>
-                      <input
-                        type="text"
-                        name="lorem"
-                        defaultValue={dataCicilan.id}
-                        disabled
                         className="mt-1 px-3 py-2 text-gray-500 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                       />
                     </label>
@@ -114,6 +99,21 @@ export default function bayarPinjaman({
                       </select>
                     </label>
                   </div> */}
+                  {/* field cicilan ke- */}
+                  <div className="my-2">
+                    <label className="block">
+                      <span className="block text-sm font-semibold text-[#667080]">
+                        Bayar Cicilan Ke-
+                      </span>
+                      <input
+                        type="text"
+                        name="lorem"
+                        defaultValue="1"
+                        disabled
+                        className="mt-1 px-3 py-2 text-gray-500 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                      />
+                    </label>
+                  </div>
                   {/* field nominal pembayaran */}
                   <div className="my-2">
                     <label className="block">
@@ -143,7 +143,7 @@ export default function bayarPinjaman({
                     </button>
                     {/* button simpan */}
                     <button className="w-full px-7 md:px-16 lg:px-20 py-2 rounded-lg bg-[#48BB78] hover:bg-[#38A169] text-white shadow-md">
-                      Tambah
+                      Bayar
                     </button>
                   </div>
                 </div>

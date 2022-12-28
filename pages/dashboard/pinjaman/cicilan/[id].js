@@ -22,7 +22,7 @@ export default function detailCicilan({ data, dataCicilan }) {
             <div>
               {/* Header */}
               <h1 className="text-2xl font-bold text-[#303030]">
-                Cicilan Pada{" "}
+                Daftar Cicilan Untuk Pinjaman{" "}
                 <time dateTime={data.tgl_pinjaman}>
                   {convertTime(data.tgl_pinjaman)}
                 </time>

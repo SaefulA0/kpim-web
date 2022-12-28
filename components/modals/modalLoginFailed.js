@@ -55,7 +55,7 @@ export default function ModalFailLogin() {
                   </Dialog.Title>
                   <div className="mt-2">
                     <p className="text-sm text-gray-500">
-                      Username dan password kamu salah
+                      Username atau Password tidak sesuai
                     </p>
                   </div>
 
