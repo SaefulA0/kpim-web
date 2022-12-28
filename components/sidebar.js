@@ -34,7 +34,7 @@ function SideNavbar() {
             </Link>
             <div className="mt-4">
               {/* Nav dashboard */}
-              <Link href="/dbdPengguna/">
+              <Link href="/dashboard">
                 <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-[#C6F6D5] p-2 rounded-md group cursor-pointer hover:shadow-sm m-auto">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
