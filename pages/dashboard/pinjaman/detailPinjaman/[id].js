@@ -1,20 +1,20 @@
 import Layout from "../../../../components/layout";
 import Header from "../../../../components/header";
-import Profile from "../../../../components/profileMD";
 import CardBarangL from "../../../../components/card/cardBarangL";
 import CardBarangR from "../../../../components/card/cardBarangR";
 import CardTotalPinjaman from "../../../../components/card/cardTotalPinjaman";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
-import { useRouter } from "next/router";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
+import { getSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 
 export default function detailPinjaman({ data, user, dataDetail, dataBarang }) {
   const router = useRouter();
   const { status } = useSession();
 
   useEffect(() => {
-    if (status === "unauthenticated") Router.replace("/login");
+    if (status === "unauthenticated") signOut(), Router.replace("/login");
   }, [status]);
 
   // useEffect(() => {
@@ -94,7 +94,7 @@ export default function detailPinjaman({ data, user, dataDetail, dataBarang }) {
                     </p>
                   </label>
                 </div>
-                {/* Nominal Cicilan */}
+                {/* Sisa Cicilan */}
                 <div className="my-3">
                   <label className="block border-b-2">
                     <span className="block text-sm font-semibold text-[#667080]">
@@ -125,17 +125,18 @@ export default function detailPinjaman({ data, user, dataDetail, dataBarang }) {
                   <button
                     type="button"
                     onClick={() => router.back()}
-                    className="w-full  px-7 mr-4 md:px-16 lg:px-20 py-2 rounded-lg bg-[#718096] hover:bg-[#4A5568] text-white shadow-md"
+                    className="w-1/2 px-7 mr-4 py-2 rounded-lg bg-[#718096] hover:bg-[#4A5568] text-white shadow-md"
                   >
                     Kembali
                   </button>
                   {/* button simpan */}
-                  <button
+                  <a
                     // onClick={}
-                    className="w-full  px-7 md:px-16 lg:px-20 py-2 rounded-lg bg-[#48BB78] hover:bg-[#38A169] text-white shadow-md"
+                    href={`/dashboard/pinjaman/cicilan/${data.id}`}
+                    className="w-1/2 text-center px-7 md:px-14 py-2 rounded-lg bg-[#48BB78] hover:bg-[#38A169] text-white shadow-md"
                   >
-                    Bayar
-                  </button>
+                    Bayar Cicilan
+                  </a>
                 </div>
               </div>
             </div>
@@ -177,7 +178,9 @@ export default function detailPinjaman({ data, user, dataDetail, dataBarang }) {
   );
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths(context) {
+  const session = await getSession(context);
+  console.log(session);
   const response = await fetch(`http://kpim_backend.test/api/pinjaman`);
   const data = await response.json();
   const datas = data.pinjaman;
@@ -192,9 +195,27 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-  // data fetching pinjaman
+  // const session = await getSession(req, res);
+  // if (!session) {
+  //   return {
+  //     redirect: {
+  //       destination: "/login",
+  //       permanent: false,
+  //     },
+  //   };
+  // }
+  // console.log(session);
+  // const token = session.user.access_token;
+
   const { id } = context.params;
-  const response1 = await fetch(`http://kpim_backend.test/api/pinjaman/${id}`);
+  const response1 = await fetch(
+    `http://kpim_backend.test/api/pinjaman/${id}`
+    // , {
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // }
+  );
   const dataPJN = await response1.json();
   const pinjamanData = JSON.parse(JSON.stringify(dataPJN));
 
@@ -202,6 +223,12 @@ export async function getStaticProps(context) {
   const id2 = pinjamanData.pinjaman.id;
   const response2 = await fetch(
     `http://kpim_backend.test/api/detail-pinjaman?pinjaman=${id2}`
+    // ,
+    // {
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // }
   );
   const dataDTL = await response2.json();
   const detailData = JSON.parse(JSON.stringify(dataDTL));
@@ -209,9 +236,14 @@ export async function getStaticProps(context) {
 
   const barang = await Promise.all(
     dataDet.map((idbarang) =>
-      fetch(`http://kpim_backend.test/api/barang/${idbarang.id_barang}`).then(
-        (response) => response.json()
-      )
+      fetch(
+        `http://kpim_backend.test/api/barang/${idbarang.id_barang}`
+        // , {
+        //   headers: {
+        //     Authorization: `Bearer ${token}`,
+        //   },
+        // }
+      ).then((response) => response.json())
     )
   );
   const barangData = JSON.parse(JSON.stringify(barang));

@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { Menu, Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import DropdownPinjaman from "../buttons/btnPinjaman";
 
-export default function TablePinjaman({ data }) {
+export default function TableCicilan({ dataCicilan }) {
   return (
     <>
       <div className="relative w-full h-5">
@@ -71,77 +70,40 @@ export default function TablePinjaman({ data }) {
         <table className="w-full table-auto mb-8 text-sm text-left text-gray-500">
           <thead className="text-xs text-gray-700 uppercase">
             <tr>
-              <th scope="col" className="py-3 px-6 border-b-2">
-                Id
+              <th
+                scope="col"
+                className="py-3 px-6 border-b-2 text-center w-fit"
+              >
+                Cicilan ke-
               </th>
               <th scope="col" className="py-3 px-6 border-b-2">
-                Tgl Peminjaman
+                Tgl Bayar
               </th>
               <th scope="col" className="py-3 px-6 border-b-2">
-                Tgl Terakhir <br /> Bayar
+                Nominal Bayar
               </th>
-              <th scope="col" className="py-3 px-6 border-b-2">
-                Jatuh Tenpo
-              </th>
-              <th scope="col" className="py-3 px-6 border-b-2">
-                Sisa Cicilan
-              </th>
-              <th scope="col" className="py-3 px-6 border-b-2 text-center">
-                Durasi Cicilan
-              </th>
-              <th scope="col" className="py-3 px-3 border-b-2 text-center">
-                Status
-              </th>
-              <th className="py-3 px-6 border-b-2 text-center">Aksi</th>
             </tr>
           </thead>
           <tbody>
-            {data.map((pinjaman) => {
+            {dataCicilan.map((cicilan) => {
               return (
-                <tr key={pinjaman.id} className="bg-white border-b">
+                <tr key={cicilan.id} className="bg-white border-b">
                   <th
                     scope="row"
                     className="py-4 text-center font-medium text-gray-900 whitespace-nowrap"
                   >
-                    {pinjaman.id}
+                    {cicilan.id}
                   </th>
                   <td className="py-4 px-6">
-                    <time dateTime={pinjaman.tgl_pinjaman}>
-                      {convertTime(pinjaman.tgl_pinjaman)}
-                    </time>
-                  </td>
-                  <td className="py-4 px-6">
-                    <time dateTime={pinjaman.updated_at}>
-                      {convertTime(pinjaman.updated_at)}
-                    </time>
-                  </td>
-                  <td className="py-4 px-6">
-                    <time dateTime={pinjaman.jatuh_tempo}>
-                      {convertTime(pinjaman.jatuh_tempo)}
+                    <time dateTime={cicilan.tgl_bayar}>
+                      {convertTime(cicilan.tgl_bayar)}
                     </time>
                   </td>
                   <td className="py-4 px-6">
                     Rp{" "}
-                    {pinjaman.sisa_cicilan
+                    {cicilan.nominal_bayar
                       .toString()
                       .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
-                  </td>
-                  <td className="py-4 px-6 text-center">
-                    {pinjaman.durasi_cicilan} Bulan
-                  </td>
-                  <td className="py-4 px-3 text-center">
-                    {pinjaman.status ? (
-                      <p className="bg-[#4299E1] truncate text-white mx-auto px-4 py-1 rounded-full w-fit">
-                        Lunas
-                      </p>
-                    ) : (
-                      <p className="bg-[#718096] truncate text-white mx-auto px-4 py-1 rounded-full w-fit">
-                        Belum Lunas
-                      </p>
-                    )}
-                  </td>
-                  <td className="py-4 px-6 flex text-center">
-                    <DropdownPinjaman pinjaman={pinjaman} />
                   </td>
                 </tr>
               );

@@ -6,14 +6,38 @@ import CardTotalPinjaman from "../../../../components/card/cardTotalPinjaman";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import Router from "next/router";
+import { signOut } from "next-auth/react";
+// import Snap from "midtrans-client/lib/snap";
+// import { Snap } from "midtrans-client";
 
-export default function bayarPinjaman({ data, user, dataDetail, dataBarang }) {
+export default function bayarPinjaman({
+  data,
+  user,
+  dataDetail,
+  dataBarang,
+  dataCicilan,
+}) {
   const router = useRouter();
   const { status } = useSession();
 
   useEffect(() => {
-    if (status === "unauthenticated") Router.replace("/login");
+    if (status === "unauthenticated") signOut(), Router.replace("/login");
   }, [status]);
+
+  useEffect(() => {
+    const midtransScriptUrl = "https://app.sandbox.midtrans.com/snap/snap.js";
+    const myMidtransClientKey = "your-client-key-goes-here";
+
+    let scriptTag = document.createElement("script");
+    scriptTag.src = midtransScriptUrl;
+    scriptTag.setAttribute("data-client-key", myMidtransClientKey);
+
+    document.body.appendChild(scriptTag);
+    return () => {
+      document.body.removeChild(scriptTag);
+    };
+  }, []);
 
   return (
     <Layout title="Tambah Simpanan Sukarela">
@@ -22,9 +46,9 @@ export default function bayarPinjaman({ data, user, dataDetail, dataBarang }) {
           {/* header */}
           <Header title="Bayar Cicilan Pinjaman" />
           {/* main */}
-          <div className="flex flex-wrap md:flex-nowrap">
+          <div className="flex flex-wrap justify-between md:flex-nowrap">
             {/* flex kiri */}
-            <div className="w-full h-fit container rounded-lg py-8 px-12 md:mr-16 bg-[#F7FAFC]">
+            <div className="md:w-full h-fit container rounded-lg mb-8 md:mb-0 py-8 px-12 bg-[#F7FAFC]">
               {/* form untuk mengisi data anggota baru */}
               <form>
                 <div className="flex flex-col justify-center">
@@ -43,23 +67,6 @@ export default function bayarPinjaman({ data, user, dataDetail, dataBarang }) {
                       />
                     </label>
                   </div>
-                  {/* field nominal pembayaran */}
-                  <div className="my-2">
-                    <label className="block">
-                      <span className="block text-sm font-semibold text-[#667080]">
-                        Nominal Bayar
-                      </span>
-                      <input
-                        type="text"
-                        name="nominal_bayar"
-                        disabled
-                        defaultValue={data.nominal_cicilan
-                          .toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
-                        className="mt-1 px-3 py-2 text-gray-500 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-                      />
-                    </label>
-                  </div>
                   {/* field cicilan ke- */}
                   <div className="my-2">
                     <label className="block">
@@ -69,8 +76,8 @@ export default function bayarPinjaman({ data, user, dataDetail, dataBarang }) {
                       <input
                         type="text"
                         name="lorem"
+                        defaultValue={dataCicilan.id}
                         disabled
-                        // defaultValue={}
                         className="mt-1 px-3 py-2 text-gray-500 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                       />
                     </label>
@@ -91,36 +98,35 @@ export default function bayarPinjaman({ data, user, dataDetail, dataBarang }) {
                     </label>
                   </div>
                   {/* select berapa kali ingin bayar */}
-                  <div className="my-2">
+                  {/* <div className="my-2">
                     <label className="block">
                       <span className="block text-sm font-semibold text-[#667080]">
                         Berapa kali ingin bayar?
                       </span>
                       <select
                         id="countries"
-                        class="mt-1 px-3 py-2 text-gray-500 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                        className="mt-1 px-3 py-2 text-gray-500 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                       >
-                        <option selected value="1">
-                          1 Bulan
-                        </option>
+                        <option value="1">1 Bulan</option>
                         <option value="2">2 Bulan</option>
                         <option value="3">3 Bulan</option>
                         <option value="4">4 Bulan</option>
                       </select>
                     </label>
-                  </div>
-
-                  {/* field nominal cicilan */}
+                  </div> */}
+                  {/* field nominal pembayaran */}
                   <div className="my-2">
                     <label className="block">
                       <span className="block text-sm font-semibold text-[#667080]">
-                        Nominal Pembaran
+                        Nominal Bayar
                       </span>
                       <input
                         type="text"
-                        name="nominal_cicilan"
+                        name="nominal_bayar"
                         disabled
-                        // defaultValue={}
+                        defaultValue={data.nominal_cicilan
+                          .toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
                         className="mt-1 px-3 py-2 text-gray-500 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                       />
                     </label>
@@ -220,12 +226,18 @@ export async function getStaticProps(context) {
   );
   const barangData = JSON.parse(JSON.stringify(barang));
 
+  const response3 = await fetch(
+    `http://kpim_backend.test/api/cicilan?pinjaman=${id2}`
+  );
+  const dataCCL = await response3.json();
+  const cicilanData = JSON.parse(JSON.stringify(dataCCL));
   return {
     props: {
       data: pinjamanData.pinjaman,
       user: pinjamanData.pinjaman.user,
       dataDetail: detailData.detail_pinjaman,
       dataBarang: barangData,
+      dataCicilan: dataCCL.cicilan,
     },
   };
 }
