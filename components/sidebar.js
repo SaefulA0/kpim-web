@@ -1,6 +1,7 @@
 import { Disclosure } from "@headlessui/react";
 import Link from "next/link";
 import Profile from "./profileSM";
+import Image from "next/image";
 
 function SideNavbar() {
   return (
@@ -20,10 +21,13 @@ function SideNavbar() {
           <div className="flex flex-col justify-start item-center">
             {/* Nav index */}
             <Link href="/">
-              <div className="w-3/5 mx-auto cursor-pointer md:my-4">
-                <img
-                  src="../../../img/Logo.svg"
+              <div className="w-3/5 mx-auto cursor-pointer md:mt-4 md:mb-10">
+                <Image
+                  src="/../../../img/Logo.svg"
                   alt="Logo"
+                  width={400}
+                  height={400}
+                  priority
                   className="mx-auto"
                 />
               </div>
@@ -34,11 +38,19 @@ function SideNavbar() {
                 <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-[#C6F6D5] p-2 rounded-md group cursor-pointer hover:shadow-sm m-auto">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 576 512"
-                    className="w-5 h-5 fill-[#4A5568] group-hover:fill-[#38A169]"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="w-6 h-6 stroke-[#4A5568] group-hover:stroke-[#38A169]"
                   >
-                    <path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+                    />
                   </svg>
+
                   <span className="text-base text-[#4A5568] group-hover:text-[#38A169] font-medium ">
                     Dashboard
                   </span>
@@ -55,10 +67,17 @@ function SideNavbar() {
                 <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-[#C6F6D5] p-2 rounded-md group cursor-pointer hover:shadow-sm m-auto">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 576 512"
-                    className="w-5 h-5 fill-[#4A5568] group-hover:fill-[#38A169]"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="w-6 h-6 stroke-[#4A5568] group-hover:stroke-[#38A169]"
                   >
-                    <path d="M88.7 223.8L0 375.8V96C0 60.7 28.7 32 64 32H181.5c17 0 33.3 6.7 45.3 18.7l26.5 26.5c12 12 28.3 18.7 45.3 18.7H416c35.3 0 64 28.7 64 64v32H144c-22.8 0-43.8 12.1-55.3 31.8zm27.6 16.1C122.1 230 132.6 224 144 224H544c11.5 0 22 6.1 27.7 16.1s5.7 22.2-.1 32.1l-112 192C453.9 474 443.4 480 432 480H32c-11.5 0-22-6.1-27.7-16.1s-5.7-22.2 .1-32.1l112-192z" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15 13.5H9m4.06-7.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"
+                    />
                   </svg>
                   <span className="text-base text-[#4A5568] group-hover:text-[#38A169] font-medium ">
                     Simpanan <br /> Wajib
@@ -70,10 +89,17 @@ function SideNavbar() {
                 <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-[#C6F6D5] p-2 rounded-md group cursor-pointer hover:shadow-sm m-auto">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 576 512"
-                    className="w-5 h-5 fill-[#4A5568] group-hover:fill-[#38A169]"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="w-6 h-6 stroke-[#4A5568] group-hover:stroke-[#38A169]"
                   >
-                    <path d="M88.7 223.8L0 375.8V96C0 60.7 28.7 32 64 32H181.5c17 0 33.3 6.7 45.3 18.7l26.5 26.5c12 12 28.3 18.7 45.3 18.7H416c35.3 0 64 28.7 64 64v32H144c-22.8 0-43.8 12.1-55.3 31.8zm27.6 16.1C122.1 230 132.6 224 144 224H544c11.5 0 22 6.1 27.7 16.1s5.7 22.2-.1 32.1l-112 192C453.9 474 443.4 480 432 480H32c-11.5 0-22-6.1-27.7-16.1s-5.7-22.2 .1-32.1l112-192z" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15 13.5H9m4.06-7.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"
+                    />
                   </svg>
                   <span className="text-base text-[#4A5568] group-hover:text-[#38A169] font-medium ">
                     Simpanan <br /> Sukarela
@@ -91,11 +117,19 @@ function SideNavbar() {
                 <div className="flex mb-2 justify-start items-center gap-4 pl-5 hover:bg-[#C6F6D5] p-2 rounded-md group cursor-pointer hover:shadow-sm m-auto">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 576 512"
-                    className="w-5 h-5 fill-[#4A5568] group-hover:fill-[#38A169]"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="w-6 h-6 stroke-[#4A5568] group-hover:stroke-[#38A169]"
                   >
-                    <path d="M88.7 223.8L0 375.8V96C0 60.7 28.7 32 64 32H181.5c17 0 33.3 6.7 45.3 18.7l26.5 26.5c12 12 28.3 18.7 45.3 18.7H416c35.3 0 64 28.7 64 64v32H144c-22.8 0-43.8 12.1-55.3 31.8zm27.6 16.1C122.1 230 132.6 224 144 224H544c11.5 0 22 6.1 27.7 16.1s5.7 22.2-.1 32.1l-112 192C453.9 474 443.4 480 432 480H32c-11.5 0-22-6.1-27.7-16.1s-5.7-22.2 .1-32.1l112-192z" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"
+                    />
                   </svg>
+
                   <span className="text-base text-[#4A5568] group-hover:text-[#38A169] font-medium ">
                     Pinjaman
                   </span>

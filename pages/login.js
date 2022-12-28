@@ -39,7 +39,7 @@ export default function login() {
         <title>Login</title>
         <link rel="icon" type="image/x-icon" href="img/Logo.svg" />
       </Head>
-      <main className="text-gray-600 body-font font-inter content-center">
+      <div className="text-gray-600 body-font font-inter content-center">
         {/* Alert */}
         {FailedLogin ? (
           <div
@@ -84,6 +84,7 @@ export default function login() {
                         name="username"
                         value={userInfo.username}
                         required
+                        autoFocus
                         onChange={({ target }) =>
                           setUserInfo({ ...userInfo, username: target.value })
                         }
@@ -168,7 +169,7 @@ export default function login() {
         </div>
         {modalFailedLogin ? <ModalFailLogin /> : null}
         <Footer />
-      </main>
+      </div>
     </main>
   );
 }

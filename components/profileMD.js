@@ -1,10 +1,12 @@
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { signOut, useSession } from "next-auth/react";
-import Link from "next/link";
+import avatar from "../public/img/defaultUser.png";
+import Image from "next/image";
 
 export default function profileMD() {
   const { data: session, status } = useSession();
+
   if (status === "authenticated") {
     return (
       <>
@@ -12,12 +14,23 @@ export default function profileMD() {
           <Menu.Button>
             <div className="flex cursor-pointer bg-[#68D391] bg-opacity-20 pl-3 pr-4 py-2 items-center rounded-2xl">
               <div>
-                <img
-                  src="../../../img/defaultUser.png"
-                  alt="Logo"
-                  width={42}
-                  height={42}
-                />
+                {session.user.user.avatar ? (
+                  <img
+                    src={`/../../../uploads/${session.user.user.avatar}`}
+                    alt="Avatar"
+                    width={42}
+                    height={42}
+                    className="rounded-md"
+                  />
+                ) : (
+                  <Image
+                    src={avatar}
+                    alt="Avatar"
+                    width={42}
+                    height={42}
+                    className="rounded-md"
+                  />
+                )}
               </div>
               <div className="grow mx-2">
                 <h5 className="font-medium text-left text-base mb-1">
@@ -51,16 +64,21 @@ export default function profileMD() {
               <Menu.Item>
                 <a
                   href="/dashboard/profil/editProfile"
-                  className="flex w-full items-center cursor-pointer text-sm rounded-t-md px-2 py-2 hover:bg-[#68D391] hover:bg-opacity-20"
+                  className="flex text-gray-700 w-full items-center cursor-pointer text-sm rounded-t-md px-2 py-2 hover:bg-[#68D391] hover:bg-opacity-20"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"
-                    width="18"
-                    height="18"
-                    className="fill-gray-800 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2"
+                    stroke="currentColor"
+                    className="w-6 h-6 mr-1 stroke-gray-700"
                   >
-                    <path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.8 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                    />
                   </svg>
                   Edit Profil
                 </a>
@@ -68,16 +86,21 @@ export default function profileMD() {
               <Menu.Item>
                 <a
                   href="/dashboard/profil/detailProfile"
-                  className="flex w-full items-center cursor-pointer text-sm rounded-b-md px-2 py-2 hover:bg-[#68D391] hover:bg-opacity-20"
+                  className="flex text-gray-700 w-full items-center cursor-pointer text-sm rounded-b-md px-2 py-2 hover:bg-[#68D391] hover:bg-opacity-20"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"
-                    width="18"
-                    height="18"
-                    className="fill-gray-800 mr-1.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2}
+                    stroke="currentColor"
+                    className="w-6 h-6 mr-1 stroke-gray-700"
                   >
-                    <path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-144c-17.7 0-32-14.3-32-32s14.3-32 32-32s32 14.3 32 32s-14.3 32-32 32z" />
+                    <path
+                      strokeLinejoin="round"
+                      strokeLinecap="round"
+                      d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
+                    />
                   </svg>
                   Detail Profil
                 </a>
@@ -85,16 +108,21 @@ export default function profileMD() {
               <Menu.Item>
                 <button
                   onClick={() => signOut()}
-                  className="flex w-full items-center cursor-pointer text-sm rounded-b-md px-2 py-2 hover:bg-[#68D391] hover:bg-opacity-20"
+                  className="flex text-gray-700 w-full items-center cursor-pointer text-sm rounded-b-md px-2 py-2 hover:bg-[#68D391] hover:bg-opacity-20"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"
-                    width="18"
-                    height="18"
-                    className="fill-gray-800 mr-1.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2"
+                    stroke="currentColor"
+                    className="w-6 h-6 stroke-gray-700 mr-1.5"
                   >
-                    <path d="M160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96C43 32 0 75 0 128V384c0 53 43 96 96 96h64c17.7 0 32-14.3 32-32s-14.3-32-32-32H96c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32h64zM504.5 273.4c4.8-4.5 7.5-10.8 7.5-17.4s-2.7-12.9-7.5-17.4l-144-136c-7-6.6-17.2-8.4-26-4.6s-14.5 12.5-14.5 22v72H192c-17.7 0-32 14.3-32 32l0 64c0 17.7 14.3 32 32 32H320v72c0 9.6 5.7 18.2 14.5 22s19 2 26-4.6l144-136z" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
+                    />
                   </svg>
                   Sign out
                 </button>
@@ -106,9 +134,5 @@ export default function profileMD() {
     );
   }
 
-  return (
-    <>
-      <Link href="/login">login duls bos</Link>
-    </>
-  );
+  return null;
 }
