@@ -38,11 +38,17 @@ export default function gantiPassword({ data, token }) {
         password: userInfo.password,
         confirm_password: userInfo.confirm_password,
       },
-    }).catch(function (error) {
-      if (error.response) {
-        setModalEditPassFailed(true);
-      }
-    });
+    })
+      .catch((error) => {
+        if (error) {
+          setModalEditPassFailed(true);
+        }
+      })
+      .then((res) => {
+        if (res) {
+          setModalEditPassSuccess(true);
+        }
+      });
   };
 
   useEffect(() => {

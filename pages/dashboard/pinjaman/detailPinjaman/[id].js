@@ -11,7 +11,7 @@ import { signOut } from "next-auth/react";
 
 export default function detailPinjaman({ data, user, dataDetail, dataBarang }) {
   const router = useRouter();
-  const { status } = useSession();
+  const { data: session, status } = useSession();
 
   useEffect(() => {
     if (status === "unauthenticated") signOut(), Router.replace("/login");
@@ -198,75 +198,80 @@ export default function detailPinjaman({ data, user, dataDetail, dataBarang }) {
   );
 }
 
-export async function getStaticPaths(context) {
+export async function getServerSideProps(context) {
   const session = await getSession(context);
-  console.log(session);
-  const response = await fetch(`http://kpim_backend.test/api/pinjaman`);
-  const data = await response.json();
-  const datas = data.pinjaman;
-  const paths = datas.map((pinjaman) => ({
-    params: { id: `${pinjaman.id}` },
-  }));
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  const token = session.user.access_token;
 
-  return {
-    paths,
-    fallback: false,
-  };
-}
-
-export async function getStaticProps(context) {
-  // const session = await getSession(req, res);
-  // if (!session) {
-  //   return {
-  //     redirect: {
-  //       destination: "/login",
-  //       permanent: false,
-  //     },
-  //   };
-  // }
-  // console.log(session);
-  // const token = session.user.access_token;
-
+  // mendapatkan id dari endpoint halaman
   const { id } = context.params;
-  const response1 = await fetch(
-    `http://kpim_backend.test/api/pinjaman/${id}`
-    // , {
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // }
-  );
+
+  // mengambil data pinjaman
+  const response1 = await fetch(`http://kpim_backend.test/api/pinjaman/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   const dataPJN = await response1.json();
+  if (dataPJN.message === "This action is unauthorized.") {
+    return {
+      redirect: {
+        destination: "/session",
+        permanent: false,
+      },
+    };
+  }
   const pinjamanData = JSON.parse(JSON.stringify(dataPJN));
 
-  // data fetching detail pinjaman
+  // mengambil detail pinjaman
   const id2 = pinjamanData.pinjaman.id;
   const response2 = await fetch(
-    `http://kpim_backend.test/api/detail-pinjaman?pinjaman=${id2}`
-    // ,
-    // {
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // }
+    `http://kpim_backend.test/api/detail-pinjaman?pinjaman=${id2}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
   );
   const dataDTL = await response2.json();
+  if (dataDTL.message === "This action is unauthorized.") {
+    return {
+      redirect: {
+        destination: "/session",
+        permanent: false,
+      },
+    };
+  }
   const detailData = JSON.parse(JSON.stringify(dataDTL));
   const dataDet = detailData.detail_pinjaman;
 
+  // mendapatkan data barang
   const barang = await Promise.all(
     dataDet.map((idbarang) =>
-      fetch(
-        `http://kpim_backend.test/api/barang/${idbarang.id_barang}`
-        // , {
-        //   headers: {
-        //     Authorization: `Bearer ${token}`,
-        //   },
-        // }
-      ).then((response) => response.json())
+      fetch(`http://kpim_backend.test/api/barang/${idbarang.id_barang}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((response) => response.json())
     )
   );
+
   const barangData = JSON.parse(JSON.stringify(barang));
+  if (barangData.message === "This action is unauthorized.") {
+    return {
+      redirect: {
+        destination: "/session",
+        permanent: false,
+      },
+    };
+  }
 
   return {
     props: {
