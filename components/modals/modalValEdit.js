@@ -72,7 +72,7 @@ export default function ModalValEdit() {
                         onClick={closeModal}
                         className="w-20 inline-flex justify-center rounded-md border border-transparent bg-[#3182CE] hover:bg-[#1E6CB6] px-4 py-2 text-sm font-medium text-slate-100  focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       >
-                        Edit
+                        Ya
                       </button>
                     </form>
                     <button

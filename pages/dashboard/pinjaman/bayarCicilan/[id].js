@@ -8,18 +8,24 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Router from "next/router";
 import { signOut } from "next-auth/react";
+import { getSession } from "next-auth/react";
 // import Snap from "midtrans-client/lib/snap";
 // import { Snap } from "midtrans-client";
 
 export default function bayarPinjaman({
   data,
   user,
+  token,
   dataDetail,
   dataBarang,
   dataCicilan,
 }) {
   const router = useRouter();
   const { status } = useSession();
+  const idpinjaman = data.id;
+
+  var jumlahCicilan = Object.keys(dataCicilan).length;
+  let cicilanKe = jumlahCicilan + 1;
 
   useEffect(() => {
     if (status === "unauthenticated") signOut(), Router.replace("/login");
@@ -38,6 +44,35 @@ export default function bayarPinjaman({
       document.body.removeChild(scriptTag);
     };
   }, []);
+
+  const onPressPay = async () => {
+    const data = await fetch(
+      `https://kpim_backend.test/api/snap-token/${idpinjaman}`,
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+    const res = await data.json();
+    const snapToken = res.token;
+    window.snap.pay(snapToken, {
+      onSuccess: () => {
+        console.log("success");
+      },
+      onPending: (result) => {
+        console.log("pending transaction", result);
+      },
+      onError: (result) => {
+        console.log("error transaction", result);
+      },
+      onClose: () => {
+        console.log(
+          "customer close the popup window without the finishing the payment"
+        );
+      },
+    });
+  };
 
   return (
     <Layout title="Tambah Simpanan Sukarela">
@@ -108,7 +143,7 @@ export default function bayarPinjaman({
                       <input
                         type="text"
                         name="lorem"
-                        defaultValue="1"
+                        defaultValue={cicilanKe}
                         disabled
                         className="mt-1 px-3 py-2 text-gray-500 border shadow-sm border-slate-300 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                       />
@@ -187,57 +222,76 @@ export default function bayarPinjaman({
   );
 }
 
-export async function getStaticPaths() {
-  const response = await fetch(`http://kpim_backend.test/api/pinjaman`);
-  const data = await response.json();
-  const datas = data.pinjaman;
-  const paths = datas.map((pinjaman) => ({
-    params: { id: `${pinjaman.id}` },
-  }));
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  const token = session.user.access_token;
 
-  return {
-    paths,
-    fallback: false,
-  };
-}
-
-export async function getStaticProps(context) {
-  // data fetching pinjaman
+  // mendapatkan id dari endpoint halaman
   const { id } = context.params;
-  const response1 = await fetch(`http://kpim_backend.test/api/pinjaman/${id}`);
+
+  // mengambil data api pinjaman
+  const response1 = await fetch(`http://kpim_backend.test/api/pinjaman/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   const dataPJN = await response1.json();
   const pinjamanData = JSON.parse(JSON.stringify(dataPJN));
 
-  // data fetching detail pinjaman
+  // mengambil data api detail pinjaman
   const id2 = pinjamanData.pinjaman.id;
   const response2 = await fetch(
-    `http://kpim_backend.test/api/detail-pinjaman?pinjaman=${id2}`
+    `http://kpim_backend.test/api/detail-pinjaman?pinjaman=${id2}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
   );
   const dataDTL = await response2.json();
   const detailData = JSON.parse(JSON.stringify(dataDTL));
   const dataDet = detailData.detail_pinjaman;
 
+  // mengambil data api barang
   const barang = await Promise.all(
     dataDet.map((idbarang) =>
-      fetch(`http://kpim_backend.test/api/barang/${idbarang.id_barang}`).then(
-        (response) => response.json()
-      )
+      fetch(`http://kpim_backend.test/api/barang/${idbarang.id_barang}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((response) => response.json())
     )
   );
   const barangData = JSON.parse(JSON.stringify(barang));
 
+  // mengambil data api cicilan
   const response3 = await fetch(
-    `http://kpim_backend.test/api/cicilan?pinjaman=${id2}`
+    `http://kpim_backend.test/api/cicilan?pinjaman=${id2}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
   );
   const dataCCL = await response3.json();
   const cicilanData = JSON.parse(JSON.stringify(dataCCL));
+
   return {
     props: {
+      token: token,
       data: pinjamanData.pinjaman,
       user: pinjamanData.pinjaman.user,
       dataDetail: detailData.detail_pinjaman,
       dataBarang: barangData,
-      dataCicilan: dataCCL.cicilan,
+      dataCicilan: cicilanData.cicilan,
     },
   };
 }

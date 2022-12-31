@@ -6,6 +6,7 @@ export default function ModalEditPassFailed() {
 
   function closeModal() {
     setIsOpen(false);
+    location.reload();
   }
 
   return (

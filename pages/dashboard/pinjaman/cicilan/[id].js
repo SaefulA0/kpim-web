@@ -5,6 +5,7 @@ import Router from "next/router";
 import { signOut } from "next-auth/react";
 import TableCicilan from "../../../../components/table/tableCicilan";
 import Profile from "../../../../components/profileMD";
+import { getSession } from "next-auth/react";
 
 export default function detailCicilan({ data, dataCicilan }) {
   const { status } = useSession();
@@ -45,33 +46,57 @@ export default function detailCicilan({ data, dataCicilan }) {
   );
 }
 
-export async function getStaticPaths() {
-  const response = await fetch(`http://kpim_backend.test/api/pinjaman`);
-  const data = await response.json();
-  const datas = data.pinjaman;
-  const paths = datas.map((pinjaman) => ({
-    params: { id: `${pinjaman.id}` },
-  }));
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  const token = session.user.access_token;
 
-  return {
-    paths,
-    fallback: false,
-  };
-}
-
-export async function getStaticProps(context) {
-  // data fetching pinjaman
+  // mendapatkan id dari endpoint halaman
   const { id } = context.params;
-  const response1 = await fetch(`http://kpim_backend.test/api/pinjaman/${id}`);
-  const dataPJN = await response1.json();
-  const pinjamanData = JSON.parse(JSON.stringify(dataPJN));
 
-  // data fetching detail pinjaman
+  // mendapatkan data pinjaman
+  const response1 = await fetch(`http://kpim_backend.test/api/pinjaman/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const dataPJN = await response1.json();
+  if (dataPJN.message === "This action is unauthorized.") {
+    return {
+      redirect: {
+        destination: "/session",
+        permanent: false,
+      },
+    };
+  }
+  const pinjamanData = JSON.parse(JSON.stringify(dataPJN));
   const id2 = pinjamanData.pinjaman.id;
+
+  // mendaptkan data cicilan
   const response2 = await fetch(
-    `http://kpim_backend.test/api/cicilan?pinjaman=${id2}`
+    `http://kpim_backend.test/api/cicilan?pinjaman=${id2}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
   );
   const dataCCL = await response2.json();
+  if (dataCCL.message === "This action is unauthorized.") {
+    return {
+      redirect: {
+        destination: "/session",
+        permanent: false,
+      },
+    };
+  }
   const cicilanData = JSON.parse(JSON.stringify(dataCCL));
 
   return {

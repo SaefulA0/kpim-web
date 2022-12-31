@@ -14,19 +14,17 @@ export default function editProfile({ data, token }) {
   const { data: session, status } = useSession();
   const router = useRouter([]);
   const user = `${data.username}`;
-  const nik = `${data.nik}`;
   const [modalEditSucces, setModalEditSucces] = useState(false);
   const [modalEditFailed, setModalEditFailed] = useState(false);
   const [image, setImage] = useState(null);
   const [createObjectURL, setCreateObjectURL] = useState(null);
-  const [name, setName] = useState("");
+  const [name, setName] = useState(`${data.avatar}`);
   const [userInfo, setUserInfo] = useState({
     nama_anggota: `${data.nama_anggota}`,
     password: `${data.password}`,
     ttl: `${data.ttl}`,
     alamat: `${data.alamat}`,
     pekerjaan: `${data.pekerjaan}`,
-    status: `${data.status}`,
   });
 
   useEffect(() => {
@@ -52,32 +50,29 @@ export default function editProfile({ data, token }) {
     const response = await fetch("/api/upload", {
       method: "POST",
       body,
-    });
-
-    // update biodata
-    await axios({
-      method: "PUT",
-      url: `http://kpim_backend.test/api/user/${user}`,
-      headers: {
-        Authorization: `Bearer  ${token}`,
-      },
-      data: {
-        avatar: name,
-        username: user,
-        nik: nik,
-        nama_anggota: userInfo.nama_anggota,
-        alamat: userInfo.alamat,
-        ttl: userInfo.ttl,
-        pekerjaan: userInfo.pekerjaan,
-        status: userInfo.status,
-      },
-    }).then(({ error }) => {
-      if (error) {
-        setModalEditFailed(true);
-      } else {
-        setModalEditSucces(true);
-      }
-    });
+    }).then(
+      await axios({
+        method: "PUT",
+        url: `http://kpim_backend.test/api/user/${user}`,
+        headers: {
+          Authorization: `Bearer  ${token}`,
+        },
+        data: {
+          avatar: name,
+          username: user,
+          nama_anggota: userInfo.nama_anggota,
+          alamat: userInfo.alamat,
+          ttl: userInfo.ttl,
+          pekerjaan: userInfo.pekerjaan,
+        },
+      }).then(({ error }) => {
+        if (error) {
+          setModalEditFailed(true);
+        } else {
+          setModalEditSucces(true);
+        }
+      })
+    );
   };
 
   return (
