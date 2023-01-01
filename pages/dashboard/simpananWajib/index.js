@@ -10,6 +10,8 @@ import { useRouter } from "next/router";
 export default function simpanaWajib({ data }) {
   const { data: session, status } = useSession();
 
+  data.sort().reverse();
+
   useEffect(() => {
     if (status === "unauthenticated") signOut(), Router.replace("/login");
   }, [status]);
