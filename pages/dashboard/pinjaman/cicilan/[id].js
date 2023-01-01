@@ -10,6 +10,8 @@ import { getSession } from "next-auth/react";
 export default function detailCicilan({ data, dataCicilan }) {
   const { status } = useSession();
 
+  dataCicilan.sort().reverse();
+
   useEffect(() => {
     if (status === "unauthenticated") signOut(), Router.replace("/login");
   }, [status]);

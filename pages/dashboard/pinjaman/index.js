@@ -10,6 +10,8 @@ import { signOut } from "next-auth/react";
 export default function pinjaman({ data }) {
   const { data: session, status } = useSession();
 
+  data.sort().reverse();
+
   useEffect(() => {
     if (status === "unauthenticated") signOut(), Router.replace("/login");
   }, [status]);
