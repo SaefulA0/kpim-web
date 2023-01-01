@@ -11,8 +11,6 @@ export default function pinjaman({ data }) {
   const { data: session, status } = useSession();
   data.sort().reverse();
 
-  console.log(data);
-
   useEffect(() => {
     if (status === "unauthenticated") signOut(), Router.replace("/login");
   }, [status]);
