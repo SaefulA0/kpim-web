@@ -10,11 +10,6 @@ export default function dashboardpengurus({
   reminderPinjaman,
   reminderSimpananWajib,
 }) {
-  //   const { dataSimpananSukarela } = props;
-  //   const { dataSimpananWajib } = props;
-  //   const { reminderPinjaman } = props;
-  //   const { reminderSimpananWajib } = props;
-
   const hitungsukarela = dataSimpananSukarela.reduce((prevVal, currentVal) => {
     return prevVal + currentVal.nominal_sukarela;
   }, 0);
@@ -31,9 +26,9 @@ export default function dashboardpengurus({
     return (
       <Layout title="Dashboard Anggota">
         <main className="body-font">
-          <div className="flex flex-wrap justify-between px-10 min-h-screen">
-            <div className="">
-              <div className="flex flex-row text-green-400 mt-14 mb-10">
+          <div className="flex flex-wrap justify-between px-6 min-h-screen">
+            <div className="mb-5">
+              <div className="flex flex-row text-green-400 mt-16 mb-10">
                 <div className="text-md">
                   Halo{" "}
                   <span className="font-bold">
@@ -43,76 +38,108 @@ export default function dashboardpengurus({
                 </div>
               </div>
               <div className="mt-5 font-semibold text-3xl mb-4">Dashboard</div>
-              <div className="flex flex-wrap gap-5 drop-shadow-lg text-white">
-                <div className="w-80 h-40 rounded-xl bg-[#8AC53E] bg-cardBG1">
-                  <div className="mx-8 mt-5 text-2xl font-bold">
-                    Simpanan Sukarela
-                  </div>
-                  <Link href="/dashboard/simpananSukarela">
-                    <div className="flex mx-8 mt-3 text-sm font-medium cursor-pointer">
-                      Lihat Selengkapnya
+              <div className="flex flex-wrap justify-center gap-5 drop-shadow-lg text-white">
+                <Link href="/dashboard/simpananSukarela">
+                  <div className="w-full flex items-center justify-between md:w-80 h-40 cursor-pointer rounded-xl bg-[#8AC53E] bg-cardBG1 bg-cover bg-no-repeat">
+                    <div className="">
+                      <div className="mx-8 text-2xl font-bold">
+                        Simpanan Sukarela
+                      </div>
+                      <div className="flex mx-8 mt-3 text-sm font-medium">
+                        Lihat Selengkapnya
+                        <svg
+                          className="ml-1 hidden md:flex"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="20"
+                          fill="#FFFFFF"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
+                        </svg>
+                      </div>
+                      <p className="mx-8 mt-3 text-2xl font-semibold">
+                        Rp{" "}
+                        {totalsukarela
+                          .toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+                      </p>
+                    </div>
+                    <div className="md:hidden w-16 h-full flex items-center justify-center rounded-r-xl backdrop-invert-0 bg-green-200/5">
                       <svg
                         className="ml-1"
                         xmlns="http://www.w3.org/2000/svg"
-                        width="14"
-                        height="20"
+                        width="18"
+                        height="24"
                         fill="#FFFFFF"
                         viewBox="0 0 24 24"
                       >
                         <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
                       </svg>
                     </div>
-                  </Link>
-                  <p className="mx-8 mt-3 text-2xl font-semibold">
-                    Rp{" "}
-                    {totalsukarela
-                      .toString()
-                      .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
-                  </p>
-                </div>
-                <div className="w-80 h-40 rounded-xl bg-[#FF993A] bg-cardBG2">
-                  <div className="mx-8 mt-5 text-2xl font-bold">
-                    Simpanan Wajib
                   </div>
-                  <Link href="/dashboard/simpananWajib">
-                    <div className="flex mx-8 mt-3 text-sm font-medium cursor-pointer">
-                      Lihat Selengkapnya
+                </Link>
+                <Link href="/dashboard/simpananWajib">
+                  <div className="w-full flex items-center justify-between md:w-80 h-40 cursor-pointer rounded-xl bg-[#FF993A] bg-cardBG2 bg-cover bg-no-repeat">
+                    <div className="">
+                      <div className="mx-8 text-2xl font-bold">
+                        Simpanan Wajib
+                      </div>
+                      <div className=" flex mx-8 mt-3 text-sm font-medium">
+                        Lihat Selengkapnya
+                        <svg
+                          className="ml-1 hidden md:flex"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="20"
+                          fill="#FFFFFF"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
+                        </svg>
+                      </div>
+                      <p className="mx-8 mt-3 text-2xl font-semibold">
+                        Rp{" "}
+                        {totalwajib
+                          .toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+                      </p>
+                    </div>
+                    <div className="md:hidden w-16 h-full flex items-center justify-center rounded-r-xl backdrop-invert-0 bg-green-200/5">
                       <svg
                         className="ml-1"
                         xmlns="http://www.w3.org/2000/svg"
-                        width="14"
-                        height="20"
+                        width="18"
+                        height="24"
                         fill="#FFFFFF"
                         viewBox="0 0 24 24"
                       >
                         <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
                       </svg>
                     </div>
-                  </Link>
-                  <p className="mx-8 mt-3 text-2xl font-semibold">
-                    Rp{" "}
-                    {totalwajib
-                      .toString()
-                      .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
-                  </p>
-                </div>
+                  </div>
+                </Link>
               </div>
             </div>
-            <div className="border-r"></div>
-            <div>
-              <div className="hidden md:flex mt-10 justify-end">
+            <div className="border-r hidden lg:flex" />
+            <div className="w-full lg:w-fit">
+              <div className="hidden lg:flex mt-10 justify-end">
                 <Profile />
               </div>
               <div className="mt-3 font-semibold text-3xl mb-4">Pengingat</div>
-              <div className="text-gray-500">
-                <div className="w-fit rounded-xl bg-[#68D391] bg-opacity-20 p-5 mb-5">
-                  <div className="mb-8">
-                    <h1 className="text-xs font-medium">
-                      Pinjaman yang belum lunas
-                    </h1>
-                    {reminderPinjaman.map((reminderPinjaman) => {
-                      return (
-                        <div className="w-96 h-32 flex flex-row justify-center items-center bg-[#EDF2F7] rounded-xl mx-auto mt-3 font-semibold drop-shadow-lg">
+              <div className="text-gray-500 rounded-xl bg-[#68D391] bg-opacity-20 p-5 mb-5">
+                <div className="mb-8">
+                  <h1 className="text-xs font-medium">
+                    Pinjaman yang belum lunas
+                  </h1>
+                  {reminderPinjaman.map((reminderPinjaman) => {
+                    return (
+                      // card
+                      <Link
+                        key={reminderPinjaman.id}
+                        href="/dashboard/pinjaman/detailPinjaman"
+                      >
+                        <div className="w-96 h-32 cursor-pointer flex flex-row justify-center items-center bg-slate-50 hover:bg-slate-100 rounded-xl mx-auto mt-3 font-semibold drop-shadow-lg">
                           <div className="flex-col">
                             <div className="text-gray-600">Tenggat Waktu</div>
                             <div className="text-[#FF3A29] text-3xl pt-3">
@@ -129,14 +156,12 @@ export default function dashboardpengurus({
                                 .toString()
                                 .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
                             </div>
-                            <div className="flex pl-3 pt-1">
-                              <Link href="/dashboard/pinjaman/detailPinjaman">
-                                <div className="ml-2 text-md font-normal cursor-pointer">
-                                  Lihat Selengkapnya
-                                </div>
-                              </Link>
+                            <div className="flex items-center pl-3 pt-1">
+                              <div className="ml-2 text-md font-normal">
+                                Lihat Selengkapnya
+                              </div>
                               <svg
-                                className="mt-1 ml-1"
+                                className="ml-1"
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="14"
                                 height="20"
@@ -148,16 +173,22 @@ export default function dashboardpengurus({
                             </div>
                           </div>
                         </div>
-                      );
-                    })}
-                  </div>
-                  <div className="mb-4">
-                    <h1 className="text-xs font-medium">
-                      Simpanan wajib yang belum lunas
-                    </h1>
-                    {reminderSimpananWajib.map((reminderSimpananWajib) => {
-                      return (
-                        <div className="w-96 h-32 flex flex-row items-center justify-center bg-[#EDF2F7] rounded-xl mx-auto mt-3 font-semibold drop-shadow-lg">
+                      </Link>
+                    );
+                  })}
+                </div>
+                <div className="mb-4">
+                  <h1 className="text-xs font-medium">
+                    Simpanan wajib yang belum lunas
+                  </h1>
+                  {reminderSimpananWajib.map((reminderSimpananWajib) => {
+                    return (
+                      // card
+                      <Link
+                        href="/dashboard/simpananWajib"
+                        key={reminderSimpananWajib.id}
+                      >
+                        <div className="w-96 h-32 cursor-pointer flex flex-row items-center justify-center bg-slate-50 hover:bg-slate-100 rounded-xl mx-auto mt-3 font-semibold drop-shadow-lg">
                           <div className="">
                             <div className="text-gray-600">Tenggat Waktu</div>
                             <div className="text-[#FF3A29] text-3xl pt-3">
@@ -175,11 +206,9 @@ export default function dashboardpengurus({
                                 .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
                             </div>
                             <div className="flex pl-3 pt-1">
-                              <Link href="/dashboard/simpananWajib">
-                                <div className="ml-2 text-md font-normal cursor-pointer">
-                                  Lihat Selengkapnya
-                                </div>
-                              </Link>
+                              <div className="ml-2 text-md font-normal">
+                                Lihat Selengkapnya
+                              </div>
                               <svg
                                 className="mt-1 ml-1"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -193,9 +222,9 @@ export default function dashboardpengurus({
                             </div>
                           </div>
                         </div>
-                      );
-                    })}
-                  </div>
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
             </div>
