@@ -13,7 +13,7 @@ export default function login() {
   const [FailedLogin, setFailedLogin] = useState(false);
 
   useEffect(() => {
-    if (status === "authenticated") Router.replace("/dashboard");
+    if (status === "authenticated") Router.replace("/");
   }, [status]);
 
   const handleSubmit = async (e) => {
@@ -28,7 +28,7 @@ export default function login() {
         setModalFailedLogin(true);
         setFailedLogin(true);
       } else {
-        router.push("/dashboard");
+        router.push("/landingPage");
       }
     });
   };

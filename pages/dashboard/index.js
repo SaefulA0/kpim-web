@@ -137,7 +137,7 @@ export default function dashboardpengurus({
                       // card
                       <Link
                         key={reminderPinjaman.id}
-                        href="/dashboard/pinjaman/detailPinjaman"
+                        href={`/dashboard/pinjaman/detailPinjaman/${reminderPinjaman.id}`}
                       >
                         <div className="w-96 h-32 cursor-pointer flex flex-row justify-center items-center bg-slate-50 hover:bg-slate-100 rounded-xl mx-auto mt-3 font-semibold drop-shadow-lg">
                           <div className="flex-col">
@@ -185,8 +185,8 @@ export default function dashboardpengurus({
                     return (
                       // card
                       <Link
-                        href="/dashboard/simpananWajib"
                         key={reminderSimpananWajib.id}
+                        href={`/dashboard/simpananWajib/bayarSimpananWajib/${reminderSimpananWajib.id}`}
                       >
                         <div className="w-96 h-32 cursor-pointer flex flex-row items-center justify-center bg-slate-50 hover:bg-slate-100 rounded-xl mx-auto mt-3 font-semibold drop-shadow-lg">
                           <div className="">

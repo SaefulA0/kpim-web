@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 import Router from "next/router";
 import { useRouter } from "next/router";
 
-export default function simpanaWajib({ data }) {
+export default function simpanaWajib({ data, token }) {
   const { data: session, status } = useSession();
 
   data.sort().reverse();
@@ -24,7 +24,7 @@ export default function simpanaWajib({ data }) {
           <Header title="Daftar Simpanan Wajib" />
           <div className="w-full min-h-screen">
             {/* tabel */}
-            <TableSimpananWajib data={data} />
+            <TableSimpananWajib data={data} token={token} />
           </div>
         </div>
       </main>
@@ -66,6 +66,7 @@ export async function getServerSideProps(req, res) {
 
   return {
     props: {
+      token: token,
       data: data.simpanan_wajib,
     },
   };
