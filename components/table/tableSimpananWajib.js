@@ -6,11 +6,6 @@ export default function TableSimpananWajib({ data }) {
   return (
     <>
       <div className="relative w-full h-5">
-        {/* <Link href="/dbdPengguna/simpananWajib/tambahSimpananWajib">
-          <button className="px-4 py-1.5 h-fit text-white shadow-md rounded-full bg-[#38A169] hover:bg-[#288755]">
-            Tambah Simpanan Wajib +
-          </button>
-        </Link> */}
         <div className="flex absolute right-0">
           <Popover className="relative mr-2">
             <Popover.Button className="w-8 h-8 flex outline-none bg-slate-50 shadow-inner rounded-full items-center justify-center hover:bg-slate-100">
@@ -160,7 +155,11 @@ export default function TableSimpananWajib({ data }) {
                         Bayar
                       </button>
                     ) : (
-                      <button className="mx-auto mb-1 px-3 py-1.5 flex items-center rounded-lg bg-[#48BB78] hover:bg-[#3da066] text-white text-sm shadow-md">
+                      <a
+                        type="button"
+                        href={`/dashboard/simpananWajib/bayarSimpananWajib/${simpWajib.id}`}
+                        className="w-fit mx-auto mb-1 px-3 py-1.5 flex items-center rounded-lg bg-[#48BB78] hover:bg-[#3da066] text-white text-sm shadow-md"
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -176,7 +175,7 @@ export default function TableSimpananWajib({ data }) {
                           />
                         </svg>
                         Bayar
-                      </button>
+                      </a>
                     )}
                   </td>
                 </tr>

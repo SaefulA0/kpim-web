@@ -1,8 +1,34 @@
 import Head from "next/head";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
+import { getSession } from "next-auth/react";
+import Link from "next/link";
+import CardLPSimpWajib from "../components/card/cardLPSimpWajib";
+import CardLPSimpSukarela from "../components/card/pinjaman/cardLPSimpSukarela";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
 
-export default function landingPage() {
+export default function landingPage({
+  dataSimpananSukarela,
+  dataSimpananWajib,
+}) {
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (status === "unauthenticated") signOut(), Router.replace("/");
+  }, [status]);
+
+  const hitungsukarela = dataSimpananSukarela.reduce((prevVal, currentVal) => {
+    return prevVal + currentVal.nominal_sukarela;
+  }, 0);
+
+  const hitungwajib = dataSimpananWajib.reduce((prevVal, currentVal) => {
+    return prevVal + currentVal.nominal_bayar;
+  }, 0);
+
+  const totalwajib = hitungwajib;
+  const totalsukarela = hitungsukarela;
+
   return (
     <main className="relative font-inter">
       <Head>
@@ -23,9 +49,11 @@ export default function landingPage() {
               Menjadi Koperasi yang mampu membangun potensi ekonomi untuk
               kesejahteraan masyarakat
             </p>
-            <button className="text-white bg-[#48BB78] shadow-lg border-0 py-2 px-6 focus:outline-none hover:bg-[#276749] rounded text-base">
-              Dashboard Koperasi
-            </button>
+            <Link href={"/dashboard"}>
+              <button className="text-white bg-[#48BB78] shadow-lg border-0 py-2 px-6 focus:outline-none hover:bg-[#276749] rounded text-base">
+                Dashboard Koperasi
+              </button>
+            </Link>
           </div>
           <div className="lg:max-w-lg lg:w-full md:w-1/2 w-2/3">
             <img src="img/Logo.svg" alt="Logo" className="mx-auto w-96" />
@@ -36,54 +64,14 @@ export default function landingPage() {
       {/* section 2 */}
       <section className="text-gray-600 bg-[#EDF2F7]">
         <div className="container px-2 py-8 mx-auto">
-          <div className="flex flex-wrap justify-center md:justify-evenly">
-            <div className="py-4 md:py-6 px-6 m-1 w-80 md:w-96 flex items-center shadow-sm rounded-lg bg-white">
-              <img
-                src="img/LandingPage/people.svg"
-                alt="Logo"
-                className="w-14"
-              />
-              <div className="text-start ml-1 md:ml-2 px-2">
-                <h2 className="title-font font-bold text-sm md:text-base text-gray-900">
-                  Anggota Aktif
-                </h2>
-                <p className="leading-relaxed text-xs md:text-sm">
-                  Lebih dari 83 anggota
-                </p>
-              </div>
-            </div>
-            <div className="py-4 md:py-6 px-6 m-1 w-80 md:w-96 flex items-center shadow-sm rounded-lg bg-white">
-              <img
-                src="img/LandingPage/agreement.svg"
-                alt="Logo"
-                className="w-14"
-              />
-              <div className="text-start ml-1 md:ml-2 px-2">
-                <h2 className="title-font font-bold text-sm md:text-base text-gray-900">
-                  Bantuan yang tersalurkan
-                </h2>
-                <p className="leading-relaxed text-xs md:text-sm">128 Kali</p>
-              </div>
-            </div>
-            <div className="py-4 md:py-6 px-6 m-1 w-80 md:w-96 flex items-center shadow-sm rounded-lg bg-white">
-              <img
-                src="img/LandingPage/money.svg"
-                alt="Logo"
-                className="w-14"
-              />
-              <div className="text-start ml-1 md:ml-2 px-2">
-                <h2 className="title-font font-bold text-sm md:text-base text-gray-900">
-                  Dana Yang Tersalurkan
-                </h2>
-                <p className="leading-relaxed text-xs md:text-sm">
-                  Rp 2.000.000
-                </p>
-              </div>
-            </div>
+          <div className="flex flex-wrap justify-center gap-8">
+            {/* simpana wajib */}
+            <CardLPSimpWajib totalwajib={totalwajib} />
+            {/* simpana sukarela */}
+            <CardLPSimpSukarela totalsukarela={totalsukarela} />
           </div>
         </div>
       </section>
-      {/* penutup section 2 */}
       {/* tentang section */}
       <section className="text-gray-600 bg-white">
         <div className="container px-10 py-16 mx-auto">
@@ -378,4 +366,58 @@ export default function landingPage() {
       <Footer />
     </main>
   );
+}
+
+export async function getServerSideProps(req, res) {
+  const session = await getSession(req, res);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  const username = session.user.user.username;
+  const access_token = session.user.access_token;
+  const response1 = await fetch(
+    `http://kpim_backend.test/api/simpanan-sukarela?username=${username}`,
+    {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    }
+  );
+  const response2 = await fetch(
+    `http://kpim_backend.test/api/simpanan-wajib?username=${username}`,
+    {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    }
+  );
+  const dataSimpananSukarela = await response1.json();
+  if (dataSimpananSukarela.message === "This action is unauthorized.") {
+    return {
+      redirect: {
+        destination: "/session",
+        permanent: false,
+      },
+    };
+  }
+  const dataSimpananWajib = await response2.json();
+  if (dataSimpananWajib.message === "This action is unauthorized.") {
+    return {
+      redirect: {
+        destination: "/session",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {
+      dataSimpananSukarela: dataSimpananSukarela.simpanan_sukarela,
+      dataSimpananWajib: dataSimpananWajib.simpanan_wajib,
+    },
+  };
 }

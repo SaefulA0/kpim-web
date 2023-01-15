@@ -9,8 +9,7 @@ import { useEffect } from "react";
 import Router from "next/router";
 import { signOut } from "next-auth/react";
 import { getSession } from "next-auth/react";
-// import Snap from "midtrans-client/lib/snap";
-// import { Snap } from "midtrans-client";
+import axios from "axios";
 
 export default function bayarPinjaman({
   data,
@@ -23,6 +22,7 @@ export default function bayarPinjaman({
   const router = useRouter();
   const { status } = useSession();
   const idpinjaman = data.id;
+  const client_key = "SB-Mid-client-U_jtoAZ2jvLmO6O5";
 
   var jumlahCicilan = Object.keys(dataCicilan).length;
   let cicilanKe = jumlahCicilan + 1;
@@ -33,11 +33,12 @@ export default function bayarPinjaman({
 
   useEffect(() => {
     const midtransScriptUrl = "https://app.sandbox.midtrans.com/snap/snap.js";
-    const myMidtransClientKey = "your-client-key-goes-here";
+    const myMidtransClientKey = `${client_key}`;
 
-    let scriptTag = document.createElement("script");
+    const scriptTag = document.createElement("script");
     scriptTag.src = midtransScriptUrl;
     scriptTag.setAttribute("data-client-key", myMidtransClientKey);
+    scriptTag.async = true;
 
     document.body.appendChild(scriptTag);
     return () => {
@@ -45,9 +46,10 @@ export default function bayarPinjaman({
     };
   }, []);
 
-  const onPressPay = async () => {
+  const onPressPay = async (e) => {
+    e.preventDefault();
     const data = await fetch(
-      `https://kpim_backend.test/api/snap-token/${idpinjaman}`,
+      `http://kpim_backend.test/api/snap?type=pinjaman&id=${idpinjaman}`,
       {
         headers: {
           Authorization: "Bearer " + token,
@@ -55,10 +57,16 @@ export default function bayarPinjaman({
       }
     );
     const res = await data.json();
-    const snapToken = res.token;
+    const snapToken = res.snapToken;
     window.snap.pay(snapToken, {
-      onSuccess: () => {
-        console.log("success");
+      onSuccess: async () => {
+        const res = await axios({
+          method: "POST",
+          url: `http://kpim_backend.test/api/payment/pinjaman/${idpinjaman}`,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
       },
       onPending: (result) => {
         console.log("pending transaction", result);
@@ -177,7 +185,10 @@ export default function bayarPinjaman({
                       Kembali
                     </button>
                     {/* button simpan */}
-                    <button className="w-full px-7 md:px-16 lg:px-20 py-2 rounded-lg bg-[#48BB78] hover:bg-[#38A169] text-white shadow-md">
+                    <button
+                      onClick={onPressPay}
+                      className="w-full px-7 md:px-16 lg:px-20 py-2 rounded-lg bg-[#48BB78] hover:bg-[#38A169] text-white shadow-md"
+                    >
                       Bayar
                     </button>
                   </div>

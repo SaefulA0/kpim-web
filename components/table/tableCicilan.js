@@ -92,7 +92,7 @@ export default function TableCicilan({ dataCicilan }) {
                     scope="row"
                     className="py-4 text-center font-medium text-gray-900 whitespace-nowrap"
                   >
-                    {cicilan.id}
+                    {cicilan.cicilan_ke}
                   </th>
                   <td className="py-4 px-6">
                     <time dateTime={cicilan.tgl_bayar}>

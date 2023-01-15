@@ -6,7 +6,6 @@ import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import Router from "next/router";
 import { signOut } from "next-auth/react";
-
 export default function pinjaman({ data }) {
   const { data: session, status } = useSession();
   data.sort().reverse();
@@ -17,7 +16,7 @@ export default function pinjaman({ data }) {
   return (
     <Layout title="Daftar Simpanan Sukarela">
       <main className="font-inter">
-        <div className="w-auto min-h-screen mx-8 mt-12 pt-2 mb-14">
+        <div className="w-auto relative min-h-screen mx-8 mt-12 pt-2 mb-14">
           {/* header */}
           <Header title="Daftar Simpanan Sukarela" />
           <div className="w-full min-h-screen">
