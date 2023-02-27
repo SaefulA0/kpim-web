@@ -39,7 +39,7 @@ export default function landingPage({
         <Navbar />
       </div>
       {/* hero section */}
-      <section className="bg-heroBG bg-no-repeat bg-center bg-cover">
+      <section className="pl-24 bg-heroBG bg-no-repeat bg-center bg-cover">
         <div className="container mx-auto px-5 py-24 flex md:flex-row flex-col w-full h-screen justify-around items-center">
           <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 mt-36 md:mt-0 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
             <h1 className="w-4/5 md:text-4xl text-3xl mb-4 font-bold text-gray-900 md:text-slate-100">

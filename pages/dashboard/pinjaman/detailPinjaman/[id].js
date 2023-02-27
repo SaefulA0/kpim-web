@@ -229,6 +229,7 @@ export async function getServerSideProps(context) {
     };
   }
   const pinjamanData = JSON.parse(JSON.stringify(dataPJN));
+  console.log(pinjamanData);
 
   // mengambil detail pinjaman
   const id2 = pinjamanData.pinjaman.id;
